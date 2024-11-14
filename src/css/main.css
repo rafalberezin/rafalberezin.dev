@@ -68,7 +68,7 @@ div.container {
 
 a:any-link {
 	position: relative;
-	color: var(--blue);
+	color: var(--yellow);
 	text-decoration: none;
 	font-weight: bold;
 

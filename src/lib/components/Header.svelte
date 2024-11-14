@@ -6,6 +6,7 @@
 	import { derived } from "svelte/store";
 	import { fly, slide } from "svelte/transition";
 	import { LucideFolderGit2, LucideHome, LucideMail, LucideMenu, LucideX } from "lucide-svelte";
+	import { loopFocus } from "$lib/actions/loopTab";
 
 	const WIDTH_BREAKPOINT = 700;
 	const MAIN_NAV_LINKS = [
@@ -183,7 +184,7 @@
 		transition: color 100ms;
 
 		&:is(:hover, :focus-visible) {
-			color: var(--blue);
+			color: var(--yellow);
 		}
 	}
 
