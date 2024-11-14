@@ -34,7 +34,7 @@
 	--font: "Fira Sans", sans-serif;
 	--font-mono: "JetBrains Mono", monospace;
 	scroll-behavior: smooth;
-	scroll-padding: 5rem;
+	scroll-padding: 4rem;
 }
 
 body {
