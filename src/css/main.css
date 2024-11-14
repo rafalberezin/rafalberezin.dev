@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+@import "./reset.css";
+
+:root {
+	/* Catppuccin Mocha (https://catppuccin.com/palette) */
+	--rosewater: #f5e0dc;
+	--flamingo:  #f2cdcd;
+	--pink:      #f5c2e7;
+	--mauve:     #cba6f7;
+	--red:       #f38ba8;
+	--maroon:    #eba0ac;
+	--peach:     #fab387;
+	--yellow:    #f9e2af;
+	--green:     #a6e3a1;
+	--teal:      #94e2d5;
+	--sky:       #89dceb;
+	--sapphire:  #74c7ec;
+	--blue:      #89b4fa;
+	--lavender:  #b4befe;
+	--text:      #cdd6f4;
+	--subtext-1: #bac2de;
+	--subtext-0: #a6adc8;
+	--overlay-2: #9399b2;
+	--overlay-1: #7f849c;
+	--overlay-0: #6c7086;
+	--surface-2: #585b70;
+	--surface-1: #45475a;
+	--surface-0: #313244;
+	--base:      #1e1e2e;
+	--mantle:    #181825;
+	--crust:     #11111b;
+
+	--font: "Fira Sans", sans-serif;
+	--font-mono: "JetBrains Mono", monospace;
+	scroll-behavior: smooth;
+	scroll-padding: 5rem;
+}
+
+body {
+	font-family: var(--font);
+	background-color: var(--base);
+	scroll-snap-type: y proximity;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+	text-wrap: balance;
+}
+
+h1 { font-size: 2.125rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.5rem; }
+
+p,
+li,
+figcaption {
+	max-width: 60ch;
+	text-wrap: pretty;
+}
+
+div.container {
+	width: 100%;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+a:any-link {
+	position: relative;
+	color: var(--blue);
+	text-decoration: none;
+	font-weight: bold;
+
+	&.hover-bg::before {
+		content: '';
+		position: absolute;
+		top: 0;	
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: currentColor;
+		border-radius: 0.15em;
+		opacity: 0;
+		transition: opacity 150ms ease-out;
+	}
+
+	&.hover-bg:is(:hover, :focus-within)::before {
+		opacity: 0.3;
+	}
+
+	&a[href*="://"]::after {
+		content: "";
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		background: currentColor;
+		mask-image: var(--icon);
+		mask-position: 0 0.125em;
+		-webkit-mask-image: var(--icon);
+		-webkit-mask-position-y: 0.125em;
+		--icon: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' %3E%3Cpath d='M0 0h24v24H0V0z' fill='none' /%3E%3Cpath d='M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z' /%3E%3C/svg%3E");
+	}
+}
