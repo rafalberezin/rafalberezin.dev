@@ -6,7 +6,7 @@
 	import { derived } from "svelte/store";
 	import { fly, slide } from "svelte/transition";
 	import { LucideFolderGit2, LucideHome, LucideMail, LucideMenu, LucideX } from "lucide-svelte";
-	import { loopFocus } from "$lib/actions/loopTab";
+	import { loopFocus } from "$lib/actions/loopFocus";
 
 	const WIDTH_BREAKPOINT = 700;
 	const MAIN_NAV_LINKS = [
@@ -41,6 +41,8 @@
 	onNavigate(() => {
 		open = false;
 	});
+
+	let mobileToggle;
 </script>
 
 <svelte:window bind:scrollY={scrollTop}/>
@@ -58,6 +60,7 @@
 			onclick={() => open = !open}
 			aria-label="toggle navigation"
 			aria-expanded={open}
+			bind:this={mobileToggle}
 		>
 			{#if open}
 				<LucideX />
@@ -75,6 +78,7 @@
 						axis: "y",
 						easing: quadOut,
 					}}
+					use:loopFocus={{ loopTo: mobileToggle }}
 				>
 					{#each MAIN_NAV_LINKS as link, i}
 						<a
@@ -85,6 +89,7 @@
 								easing: quadOut,
 							}}
 							href={link.href}
+							data-focusable
 						>
 							<link.icon />{link.label}
 						</a>
