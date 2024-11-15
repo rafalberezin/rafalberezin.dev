@@ -186,7 +186,7 @@
 		font-weight: normal;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		transition: color 100ms;
+		transition: color 100ms linear;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--yellow);
