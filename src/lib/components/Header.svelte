@@ -137,7 +137,8 @@
 		left: 0;
 		width: 100%;
 		height: 4rem;
-		background-color: var(--base);
+		background-color: #1e1e2e80;
+		backdrop-filter: blur(2px);
 		border-bottom: 1px solid transparent;
 		transition: border-bottom-color 100ms ease-out;
 		z-index: 100;
@@ -162,7 +163,7 @@
 	.logo {
 		height: 100%;
 
-		& img {
+		img {
 			height: 100%;
 			border: 1px solid var(--surface-0);
 			border-radius: 100%;
