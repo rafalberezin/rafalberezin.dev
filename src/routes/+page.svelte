@@ -1,6 +1,7 @@
 <script>
 	import { fakeHover } from "$lib/actions/fakeHover.js";
 	import { interserct } from "$lib/actions/intersect.js";
+	import ParticleBackground from "$lib/components/ParticleBackground.svelte";
 
 	import { LucideTag } from "lucide-svelte";
 
@@ -44,7 +45,7 @@
 
 <main id="main-content">
 	<section id="hero" class="page-section">
-		<!-- TODO add something in the background  -->
+		<ParticleBackground />
 		<div class="wrapper">
 			<h1>Hi, I'm <span class="highlight">Rafał</span> <span class="handwave">👋</span></h1>
 			<p>I'm a 22-year-old developer from Poland with a passion for coding that began when i was 15. From simple websites and game modding, I've been expanding my skill set for years.</p>
