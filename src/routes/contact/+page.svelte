@@ -11,34 +11,31 @@
 </svelte:head>
 
 <main id="main-content">
-	<section class="page-section">
-		<ParticleBackground />
-		<h1>Get in Touch</h1>
-
-		<button class="fake-link" onclick={(event) => {
-			event.preventDefault();
-
-			navigator.clipboard.writeText("rafalberezin");
-			toaster.add("Copied to clipboard", "success", 3000);
-		}}>
-			<img class="icon" src="discord.svg" alt="discord"> rafalberezin
-		</button>
-
-		<a class="external" href="mailto:rafalberezin@gmail.com">
-			<LucideMail size="1.5em"/> rafalberezin@gmail.com
-		</a>
-
-		<a href="https://github.com/RafalBerezin" target="_blank">
-			<LucideGithub size="1.5em"/> RafalBerezin
-		</a>
+	<section class="page-section section-fill">
+		<div class="content-wrapper">
+			<ParticleBackground />
+			<h1>Get in Touch</h1>
+			<button class="fake-link" onclick={(event) => {
+				event.preventDefault();
+				navigator.clipboard.writeText("rafalberezin");
+				toaster.add("Copied to clipboard", "success", 3000);
+			}}>
+				<img class="icon" src="discord.svg" alt="discord"> rafalberezin
+			</button>
+			<a class="external" href="mailto:rafalberezin@gmail.com">
+				<LucideMail size="1.5em"/> rafalberezin@gmail.com
+			</a>
+			<a href="https://github.com/RafalBerezin" target="_blank">
+				<LucideGithub size="1.5em"/> RafalBerezin
+			</a>
+		</div>
 	</section>
 </main>
 
 <style>
-	section {
+	.content-wrapper {
 		display: grid;
-		padding: 7em 1em 2em;
-		gap: 1rem;
+		gap: 1em;
 	}
 
 	h1 {

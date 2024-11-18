@@ -9,16 +9,16 @@
 </script>
 
 <main id="main-content">
-	<section id="hero" class="page-section">
+	<section id="hero" class="page-section section-fill">
 		<ParticleBackground />
-		<div class="wrapper">
+		<div class="content-wrapper">
 			<h1>Hi, I'm <span class="highlight">Rafał</span> <span class="handwave">👋</span></h1>
 			<p>I'm a 22-year-old developer from Poland with a passion for coding that began when i was 15. From simple websites and game modding, I've been expanding my skill set for years.</p>
 			<a href="#projects" class="call-to-action">See projects</a>
 		</div>
 	</section>
 
-	<section id="skills"
+	<section id="skills" class="page-section"
 		use:interserct={{
 			once: true,
 			event: "fakeHover",
@@ -32,7 +32,7 @@
 			sequantialDelay: 100
 		}}
 	>
-		<div class="wrapper">
+		<div class="content-wrapper">
 			<h2 class="section-title">What I know</h2>
 			<ul class="icon-blocks">
 				<li class="block"><img class="icon" src="tech/html.svg"   alt="html icon"></li>
@@ -43,7 +43,7 @@
 				<li class="block"><img class="icon" src="tech/java.svg"   alt="java icon"></li>
 			</ul>
 		</div>
-		<div class="wrapper">
+		<div class="content-wrapper">
 			<h2 class="section-title">What I'm learning</h2>
 			<ul class="icon-blocks">
 				<li class="block"><img class="icon" src="tech/go.svg"     alt="go icon"></li>
@@ -52,13 +52,13 @@
 		</div>
 	</section>
 
-	<section id="knowledge">
+	<section id="knowledge" class="page-section">
 		<h2 class="section-title">Knowledge means more when you share it</h2>
 		<p>That's why I'm making my projects <nobr class="highlight">open-source</nobr> whenever possible.</p>
 	</section>
 
-	<section id="projects" class="page-section">
-		<div class="wraper">
+	<section id="projects" class="page-section section-fill">
+		<div class="content-wrapper">
 			<h2>Featured projects</h2>
 
 			<div class="featured-projects">
@@ -83,19 +83,13 @@
 
 
 <style>
-	section {
-		padding: 2em 1em;
-	}
-	
 	.section-title {
 		text-align: center;
 	}
 	
 	/* #region Hero */
-	
-	#hero {
-		padding-top: 7rem;
 
+	#hero {
 		h1 {
 			margin-bottom: 0.5em;
 			font-size: 3rem;
