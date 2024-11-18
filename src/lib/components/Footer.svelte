@@ -6,7 +6,7 @@
 
 <footer>
 	<p>
-		Built with <LucideHeart fill="var(--red)" color="var(--red)" />
+		Built with <LucideHeart fill="var(--red)" color="var(--red)" aria-label="love" />
 	</p>
 	<p>
 		Rafał Berezin <LucideCopyright size=16 aria-label="copyright"/> 2024

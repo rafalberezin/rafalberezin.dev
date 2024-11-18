@@ -1,14 +1,14 @@
 <script>
 	import { clickOutside } from "$lib/actions/clickOutside";
+	import { loopFocus } from "$lib/actions/loopFocus";
 	
 	import { onNavigate } from "$app/navigation";
 	import { quadOut } from "svelte/easing";
 	import { derived } from "svelte/store";
 	import { fly, slide } from "svelte/transition";
 	import { LucideFolderGit2, LucideHome, LucideMail, LucideMenu, LucideX } from "lucide-svelte";
-	import { loopFocus } from "$lib/actions/loopFocus";
 
-	const WIDTH_BREAKPOINT = 700;
+	const WIDTH_BREAKPOINT = 650;
 	const MAIN_NAV_LINKS = [
 		{
 			href: "/",
@@ -42,6 +42,7 @@
 		open = false;
 	});
 
+	// svelte-ignore non_reactive_update
 	let mobileToggle;
 </script>
 
@@ -53,6 +54,7 @@
 	<div class="container">
 		<a href="/" class="logo">
 			<img src="favicon.svg" alt="Logo">
+			<span class="name">rafalberezin<span class="highlight">.dev</span></span>
 		</a>
 
 		<button
@@ -109,7 +111,7 @@
 
 <style>
 	.skip-to-content {
-		position: absolute;
+		position: fixed;
 		top: 0.5em;
 		left: 0.5em;
 		display: grid;
@@ -161,13 +163,34 @@
 	}
 
 	.logo {
-		height: 100%;
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0 1em;
+
+		color: var(--subtext-0);
+		font-family: var(--font-mono);
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		transition: color 100ms linear;
 
 		img {
-			height: 100%;
-			border: 1px solid var(--surface-0);
-			border-radius: 100%;
+			width: 2.3em;
 			aspect-ratio: 1;
+		}
+
+		.highlight {
+			color: var(--peach);
+		}
+
+		&:is(:hover, :focus-visible) {
+			color: var(--text);
+		}
+	}
+
+	@media (max-width: 800px) {
+		.name {
+			display: none;
 		}
 	}
 
