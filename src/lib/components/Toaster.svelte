@@ -80,7 +80,7 @@
 			background-color: var(--red);
 			border-radius: 0.25em;
 			opacity: 0;
-			transition: opacity 100ms ease-out;
+			transition: opacity var(--transition-duration) ease-out;
 		}
 
 		&:is(:hover, :focus-visible)::before {

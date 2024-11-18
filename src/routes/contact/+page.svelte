@@ -51,7 +51,7 @@
 		gap: 0.5em;
 		color: var(--text);
 		font-family: var(--font-mono);
-		transition: color 100ms linear;
+		transition: color var(--transition-duration) linear;
 
 		img, :global(svg) {
 			margin-top: -1px;

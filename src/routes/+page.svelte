@@ -136,8 +136,8 @@
 		font-weight: normal;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		transition: background-color 150ms ease-out,
-					color 150ms ease-out;
+		transition: background-color var(--transition-duration) ease-out,
+					color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
 			background: transparent;
@@ -183,9 +183,9 @@
 			scale: 1;
 			opacity: 0.3;
 			filter: grayscale(0.7);
-			transition: scale 200ms ease-out,
-						opacity 200ms ease-out,
-						filter 200ms ease-out;
+			transition: scale var(--transition-duration-long) ease-out,
+						opacity var(--transition-duration-long) ease-out,
+						filter var(--transition-duration-long) ease-out;
 		}
 
 		&:is(:hover, :global(.fake-hover)) img {
@@ -255,7 +255,7 @@
 		background-color: var(--mantle);
 		border: 3px solid var(--accent);
 		outline-offset: 5px;
-		transition: background-color 150ms ease-out;
+		transition: background-color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
 			background-color: var(--base);
@@ -274,7 +274,7 @@
 			background-color: var(--base);
 			color: var(--subtext-0);
 			font-size: 0.9rem;
-			transition: background-color 150ms ease-out;
+			transition: background-color var(--transition-duration) ease-out;
 		}
 
 		p {
@@ -326,8 +326,8 @@
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		border: 3px solid transparent;
-		transition: background 150ms ease-out,
-					color 150ms ease-out;
+		transition: background var(--transition-duration) ease-out,
+					color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--text);

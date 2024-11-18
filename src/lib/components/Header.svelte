@@ -126,7 +126,7 @@
 		border: 1px solid var(--surface-0);
 		z-index: 110;
 		transform: translateY(-120%);
-		transition: transform 150ms ease-out;
+		transition: transform var(--transition-duration) ease-out;
 
 		&:focus-visible {
 			transform: translateY(0);
@@ -142,7 +142,7 @@
 		background-color: #1e1e2e80;
 		backdrop-filter: blur(2px);
 		border-bottom: 1px solid transparent;
-		transition: border-bottom-color 100ms ease-out;
+		transition: border-bottom-color var(--transition-duration) ease-out;
 		z-index: 100;
 
 		&:is(:not(.top), .mobile.open) {
@@ -172,7 +172,7 @@
 		font-family: var(--font-mono);
 		letter-spacing: 2px;
 		text-transform: uppercase;
-		transition: color 100ms linear;
+		transition: color var(--transition-duration) linear;
 
 		img {
 			width: 2.3em;
@@ -210,7 +210,7 @@
 		font-weight: normal;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		transition: color 100ms linear;
+		transition: color var(--transition-duration) linear;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--yellow);
@@ -240,7 +240,7 @@
 		border: 1px solid var(--surface-0);
 		aspect-ratio: 1;
 		cursor: pointer;
-		transition: background-color 100ms;
+		transition: background-color var(--transition-duration) linear;
 
 		&:is(:hover, :focus-visible) {
 			background-color: var(--surface-0);
