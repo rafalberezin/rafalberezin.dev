@@ -9,6 +9,7 @@ export async function load() {
 		summary,
 		latest_version,
 		tags,
+		license,
 		accent
 		`)
 		.eq("featured", true)

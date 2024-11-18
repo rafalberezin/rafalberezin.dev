@@ -3,44 +3,9 @@
 	import { interserct } from "$lib/actions/intersect.js";
 	import ParticleBackground from "$lib/components/ParticleBackground.svelte";
 
-	import { LucideTag } from "lucide-svelte";
+	import { LucideScale, LucideTag } from "lucide-svelte";
 
 	const { data } = $props();
-
-	// Temp untill i put stuff into db
-	const FEATURED_PROJECTS_TEST = [
-		{
-			"name": "Arcane Core",
-			"summary": "A versatile framework for creating Minecraft data packs",
-			"latest_version": "v0.1.0",
-			"slug": "arcane-core",
-			"accent": "var(--mauve)",
-			"tags": {
-				"Minecraft": "var(--green)",
-				"Framework": "var(--mauve)",
-			}
-		},
-		{
-			"name": "Pocket Dimension",
-			"summary": "The ultimate solution to inventory problems",
-			"latest_version": "v1.3.0",
-			"slug": "pocket-dimension",
-			"accent": "var(--blue)",
-			"tags": {
-				"Minecraft": "var(--green)",
-			}
-		},
-		{
-			"name": "Lorem ipsum",
-			"summary": "Dolor sit amet consectetur",
-			"latest_version": "v2.7.0",
-			"slug": "lorem-ipsum",
-			"accent": "var(--peach)",
-			"tags": {
-				"Lorem": "var(--peach)",
-			}
-		}
-	]
 </script>
 
 <main id="main-content">
@@ -97,13 +62,14 @@
 			<h2>Featured projects</h2>
 
 			<div class="featured-projects">
-				{#each FEATURED_PROJECTS_TEST as project}
+				{#each data.featuredProjects as project}
 					<a class="project no-global" href={`/projects/${project.slug}`} style={`--accent: ${project.accent}`}>
 						<h3>{project.name} <span class="version">{project.latest_version}</span></h3>
 						<p class="summary">{project.summary}</p>
 						<ul class="tags">
+							<li class="tag license"><LucideScale size=16 aria-label="license" />{project.license}</li>
 							{#each Object.entries(project.tags) as [label, color]}
-							<li class="tag" style={`color: ${color}`}><LucideTag size=16 />{label}</li>
+							<li class="tag" style={`color: ${color}`}><LucideTag size=16 aria-hidden="true" />{label}</li>
 							{/each}
 						</ul>	
 					</a>
@@ -119,20 +85,16 @@
 <style>
 	section {
 		padding: 2em 1em;
-
-		&#hero  {
-			padding-top: 7rem;
-		}
 	}
-
+	
 	.section-title {
 		text-align: center;
 	}
-
+	
 	/* #region Hero */
-
+	
 	#hero {
-		position: relative;
+		padding-top: 7rem;
 
 		h1 {
 			margin-bottom: 0.5em;
@@ -351,6 +313,15 @@
 			margin-top: 2px;
 		}
 	}
+
+	.license {
+		color: var(--subtext-0);
+
+		:global(svg) {
+			margin-top: 0;
+		}
+	}
+
 
 	.see-more {
 		position: relative;
