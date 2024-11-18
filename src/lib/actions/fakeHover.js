@@ -1,4 +1,4 @@
-/** 
+/**
  * @type {import('svelte/action').Action<HTMLElement, import('$lib/types/fakeHover').FakeHoverParams>}
  * @description Add .fake-hover as :hover alternative to css selector.
  */

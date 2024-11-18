@@ -1,7 +1,7 @@
 <script>
 	import { clickOutside } from "$lib/actions/clickOutside";
 	import { loopFocus } from "$lib/actions/loopFocus";
-	
+
 	import { onNavigate } from "$app/navigation";
 	import { quadOut } from "svelte/easing";
 	import { derived } from "svelte/store";

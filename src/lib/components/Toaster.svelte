@@ -87,7 +87,7 @@
 			opacity: 0.3;
 		}
 
-		&:focus {	
+		&:focus {
 			outline: 2px solid var(--blue);
 		}
 	}

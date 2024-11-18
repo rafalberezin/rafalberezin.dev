@@ -71,7 +71,7 @@
 							{#each Object.entries(project.tags) as [label, color]}
 							<li class="tag" style={`color: ${color}`}><LucideTag size=16 aria-hidden="true" />{label}</li>
 							{/each}
-						</ul>	
+						</ul>
 					</a>
 				{/each}
 			</div>
@@ -86,7 +86,7 @@
 	.section-title {
 		text-align: center;
 	}
-	
+
 	/* #region Hero */
 
 	#hero {
@@ -224,8 +224,6 @@
 		}
 	}
 
-
-
 	/* #region Projects */
 
 	#projects {
@@ -245,9 +243,8 @@
 		gap: 1em;
 		padding: 2em 0;
 		list-style-type: none;
-		
 	}
-	
+
 	.project {
 		display: flex;
 		flex-direction: column;
@@ -259,7 +256,7 @@
 		border: 3px solid var(--accent);
 		outline-offset: 5px;
 		transition: background-color 150ms ease-out;
-	
+
 		&:is(:hover, :focus-visible) {
 			background-color: var(--base);
 
@@ -273,7 +270,7 @@
 		}
 
 		.version {
-			padding: 0.2em 0.3em 0.1em 0.3em;	
+			padding: 0.2em 0.3em 0.1em 0.3em;
 			background-color: var(--base);
 			color: var(--subtext-0);
 			font-size: 0.9rem;
@@ -331,7 +328,7 @@
 		border: 3px solid transparent;
 		transition: background 150ms ease-out,
 					color 150ms ease-out;
-		
+
 		&:is(:hover, :focus-visible) {
 			color: var(--text);
 			background-color: var(--mantle);

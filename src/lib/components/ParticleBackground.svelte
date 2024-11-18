@@ -1,16 +1,16 @@
 <script>
 	import { debounce } from "$lib/utils";
 	import { onMount } from "svelte";
-	
-		const density = 15000;
-		const maxParticles = 200;
-		const minVelocity = 0.01;
-		const maxVelocity = 0.03;
-		const velocityRange = maxVelocity - minVelocity;
-		const minSize = 3;
-		const maxSize = 7;
-		const sizeRange = maxSize - minSize;
-		const particleColor = "#fab387";
+
+	const density = 15000;
+	const maxParticles = 200;
+	const minVelocity = 0.01;
+	const maxVelocity = 0.03;
+	const velocityRange = maxVelocity - minVelocity;
+	const minSize = 3;
+	const maxSize = 7;
+	const sizeRange = maxSize - minSize;
+	const particleColor = "#fab387";
 
 	/** @type {HTMLCanvasElement} */
 	let canvas;
@@ -29,7 +29,7 @@
 
 	/** @type {Particle[]} */
 	let particles;
-	
+
 	/** @type {number} */
 	let previousTimestamp;
 
@@ -93,7 +93,7 @@
 	function animate(timestamp) {
 		const delta = (timestamp - previousTimestamp);
 		previousTimestamp = timestamp;
-		
+
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		updateParticles(Math.min(delta, 50));
 		drawParticles(ctx);
@@ -105,7 +105,7 @@
 		ctx = /** @type {CanvasRenderingContext2D} */ (canvas.getContext("2d"));
 
 		previousTimestamp = performance.now();
-		
+
 		initCanvas();
 		nextFrameHandle = requestAnimationFrame(animate);
 
