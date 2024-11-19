@@ -2,6 +2,7 @@
 	import { fakeHover } from "$lib/actions/fakeHover.js";
 	import { interserct } from "$lib/actions/intersect.js";
 	import ParticleBackground from "$lib/components/ParticleBackground.svelte";
+	import ProjectCard from "$lib/components/ProjectCard.svelte";
 
 	import { LucideScale, LucideTag } from "lucide-svelte";
 
@@ -23,7 +24,7 @@
 			once: true,
 			event: "fakeHover",
 			intersectingOnly: true,
-			observerOptions: { threshold: 0.3 }
+			observerOptions: { rootMargin: "-50%" }
 		}}
 		use:fakeHover={{
 			selector: "li",
@@ -63,16 +64,7 @@
 
 			<div class="featured-projects">
 				{#each data.featuredProjects as project}
-					<a class="project no-global" href={`/projects/${project.slug}`} style={`--accent: ${project.accent}`}>
-						<h3>{project.name} <span class="version">{project.latest_version}</span></h3>
-						<p class="summary">{project.summary}</p>
-						<ul class="tags">
-							<li class="tag license"><LucideScale size=16 aria-label="license" />{project.license}</li>
-							{#each Object.entries(project.tags) as [label, color]}
-							<li class="tag" style={`color: ${color}`}><LucideTag size=16 aria-hidden="true" />{label}</li>
-							{/each}
-						</ul>
-					</a>
+					<ProjectCard {project} />
 				{/each}
 			</div>
 
@@ -242,77 +234,12 @@
 		flex-wrap: wrap;
 		gap: 1em;
 		padding: 2em 0;
-		list-style-type: none;
-	}
 
-	.project {
-		display: flex;
-		flex-direction: column;
-		flex: 1 0 30ch;
-		width: 100%;
-		padding: 1em;
-		text-decoration: none;
-		background-color: var(--mantle);
-		border: 3px solid var(--accent);
-		outline-offset: 5px;
-		transition: background-color var(--transition-duration) ease-out;
-
-		&:is(:hover, :focus-visible) {
-			background-color: var(--base);
-
-			.version {
-				background-color: var(--surface-0);
-			}
-		}
-
-		h3 {
-			color: var(--accent);
-		}
-
-		.version {
-			padding: 0.2em 0.3em 0.1em 0.3em;
-			background-color: var(--base);
-			color: var(--subtext-0);
-			font-size: 0.9rem;
-			transition: background-color var(--transition-duration) ease-out;
-		}
-
-		p {
-			padding: 1em 0;
-			color: var(--subtext-0);
+		> :global(.project) {
+			flex: 1 0 35ch;
+			max-width: 100%;
 		}
 	}
-
-
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25em;
-		list-style-type: none;
-		margin-top: auto;
-	}
-
-	.tag {
-		display: flex;
-		align-content: center;
-		gap: 0.25em;
-		padding: 0.25em 0.5em;
-		border: 1px solid var(--surface-0);
-		border-radius: 1em;
-
-		:global(svg) {
-			margin-top: 2px;
-		}
-	}
-
-	.license {
-		color: var(--subtext-0);
-
-		:global(svg) {
-			margin-top: 0;
-		}
-	}
-
 
 	.see-more {
 		position: relative;
