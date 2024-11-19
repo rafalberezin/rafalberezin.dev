@@ -22,8 +22,8 @@
 			}}>
 				<img class="icon" src="discord.svg" alt="discord"> rafalberezin
 			</button>
-			<a class="external" href="mailto:rafalberezin@gmail.com">
-				<LucideMail size="1.5em"/> rafalberezin@gmail.com
+			<a class="external" href="mailto:contact@rafalberezin.dev">
+				<LucideMail size="1.5em"/> contact@rafalberezin.dev
 			</a>
 			<a href="https://github.com/RafalBerezin" target="_blank">
 				<LucideGithub size="1.5em"/> RafalBerezin
