@@ -5,9 +5,9 @@
  */
 export function debounce(callback, delay) {
 	/** @type {ReturnType<setTimeout>} */
-	let timeoutId;
+	let timeoutId
 	return () => {
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(callback, delay);
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(callback, delay)
 	}
 }

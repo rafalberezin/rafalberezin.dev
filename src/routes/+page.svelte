@@ -1,12 +1,10 @@
 <script>
-	import { fakeHover } from "$lib/actions/fakeHover.js";
-	import { interserct } from "$lib/actions/intersect.js";
-	import ParticleBackground from "$lib/components/ParticleBackground.svelte";
-	import ProjectCard from "$lib/components/ProjectCard.svelte";
+	import { fakeHover } from '$lib/actions/fakeHover.js'
+	import { interserct } from '$lib/actions/intersect.js'
+	import ParticleBackground from '$lib/components/ParticleBackground.svelte'
+	import ProjectCard from '$lib/components/ProjectCard.svelte'
 
-	import { LucideScale, LucideTag } from "lucide-svelte";
-
-	const { data } = $props();
+	const { data } = $props()
 </script>
 
 <main id="main-content">
@@ -25,43 +23,63 @@
 		</div>
 	</section>
 
-	<section id="skills" class="page-section"
+	<section
+		id="skills"
+		class="page-section"
 		use:interserct={{
 			once: true,
-			event: "fakeHover",
+			event: 'fakeHover',
 			intersectingOnly: true,
-			observerOptions: { rootMargin: "-50%" }
+			observerOptions: { rootMargin: '-50%' }
 		}}
 		use:fakeHover={{
-			selector: "li",
+			selector: 'li',
 			duration: 200,
 			delay: 300,
 			sequantialDelay: 100
-		}}
-	>
+		}}>
 		<div class="content-wrapper">
 			<h2 class="section-title">What I know</h2>
 			<ul class="icon-blocks">
-				<li class="block"><img class="icon" src="tech/html.svg"   alt="html icon"></li>
-				<li class="block"><img class="icon" src="tech/css.svg"    alt="css icon"></li>
-				<li class="block"><img class="icon" src="tech/js.svg"     alt="javascript icon"></li>
-				<li class="block"><img class="icon" src="tech/git.svg"    alt="git icon"></li>
-				<li class="block"><img class="icon" src="tech/svelte.svg" alt="svelte icon"></li>
-				<li class="block"><img class="icon" src="tech/java.svg"   alt="java icon"></li>
+				<li class="block">
+					<img class="icon" src="tech/html.svg" alt="html icon" />
+				</li>
+				<li class="block">
+					<img class="icon" src="tech/css.svg" alt="css icon" />
+				</li>
+				<li class="block">
+					<img class="icon" src="tech/js.svg" alt="javascript icon" />
+				</li>
+				<li class="block">
+					<img class="icon" src="tech/git.svg" alt="git icon" />
+				</li>
+				<li class="block">
+					<img class="icon" src="tech/svelte.svg" alt="svelte icon" />
+				</li>
+				<li class="block">
+					<img class="icon" src="tech/java.svg" alt="java icon" />
+				</li>
 			</ul>
 		</div>
 		<div class="content-wrapper">
 			<h2 class="section-title">What I'm learning</h2>
 			<ul class="icon-blocks">
-				<li class="block"><img class="icon" src="tech/go.svg"     alt="go icon"></li>
-				<li class="block"><img class="icon" src="tech/docker.svg" alt="docker icon"></li>
+				<li class="block">
+					<img class="icon" src="tech/go.svg" alt="go icon" />
+				</li>
+				<li class="block">
+					<img class="icon" src="tech/docker.svg" alt="docker icon" />
+				</li>
 			</ul>
 		</div>
 	</section>
 
 	<section id="knowledge" class="page-section">
 		<h2 class="section-title">Knowledge means more when you share it</h2>
-		<p>That's why I'm making my projects <nobr class="highlight">open-source</nobr> whenever possible.</p>
+		<p>
+			That's why I'm making my projects <nobr class="highlight"
+				>open-source</nobr> whenever possible.
+		</p>
 	</section>
 
 	<section id="projects" class="page-section section-fill">
@@ -78,7 +96,6 @@
 		</div>
 	</section>
 </main>
-
 
 <style>
 	.section-title {
@@ -119,13 +136,16 @@
 	}
 
 	@keyframes handwave {
-		0%, 100% {
-        	transform: rotate(0deg);
+		0%,
+		100% {
+			transform: rotate(0deg);
 		}
-		20%, 60% {
+		20%,
+		60% {
 			transform: rotate(-10deg);
 		}
-		40%, 80% {
+		40%,
+		80% {
 			transform: rotate(10deg);
 		}
 	}
@@ -140,8 +160,9 @@
 		font-weight: normal;
 		text-transform: uppercase;
 		letter-spacing: 1px;
-		transition: background-color var(--transition-duration) ease-out,
-					color var(--transition-duration) ease-out;
+		transition:
+			background-color var(--transition-duration) ease-out,
+			color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
 			background: transparent;
@@ -187,9 +208,10 @@
 			scale: 1;
 			opacity: 0.3;
 			filter: grayscale(0.7);
-			transition: scale var(--transition-duration-long) ease-out,
-						opacity var(--transition-duration-long) ease-out,
-						filter var(--transition-duration-long) ease-out;
+			transition:
+				scale var(--transition-duration-long) ease-out,
+				opacity var(--transition-duration-long) ease-out,
+				filter var(--transition-duration-long) ease-out;
 		}
 
 		&:is(:hover, :global(.fake-hover)) img {
@@ -265,8 +287,9 @@
 		text-transform: uppercase;
 		letter-spacing: 1px;
 		border: 3px solid transparent;
-		transition: background var(--transition-duration) ease-out,
-					color var(--transition-duration) ease-out;
+		transition:
+			background var(--transition-duration) ease-out,
+			color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
 			color: var(--text);

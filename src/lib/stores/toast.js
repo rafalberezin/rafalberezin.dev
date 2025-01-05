@@ -4,14 +4,14 @@
  * @typedef {import('$lib/types/toast').ToastStore} ToastStore
  */
 
-import { writable } from "svelte/store";
+import { writable } from 'svelte/store'
 
 /**
  * @returns {ToastStore}
  */
 function createToastStore() {
-	const { subscribe, set, update } = writable(/** @type {Toast[]} */ ([]));
-	let _id = 0;
+	const { subscribe, set, update } = writable(/** @type {Toast[]} */ ([]))
+	let _id = 0
 
 	/**
 	 * @param {string} message
@@ -20,24 +20,24 @@ function createToastStore() {
 	 * @returns {number}
 	 */
 	function add(message, type, duration) {
-		const id = _id++;
-		update((toasts) => {
-			toasts.push({id, message, type, duration});
-			setTimeout(() => remove(id), duration);
-			return toasts;
-		});
-		return id;
+		const id = _id++
+		update(toasts => {
+			toasts.push({ id, message, type, duration })
+			setTimeout(() => remove(id), duration)
+			return toasts
+		})
+		return id
 	}
 
 	/**
 	 * @param {number} id
 	 */
 	function remove(id) {
-		update((toasts) => toasts.filter((toast) => toast.id !== id));
+		update(toasts => toasts.filter(toast => toast.id !== id))
 	}
 
 	function clear() {
-		set([]);
+		set([])
 	}
 
 	return {
@@ -48,4 +48,4 @@ function createToastStore() {
 	}
 }
 
-export const toaster = createToastStore();
+export const toaster = createToastStore()
