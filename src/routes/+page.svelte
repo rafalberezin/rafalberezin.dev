@@ -13,8 +13,14 @@
 	<section id="hero" class="page-section section-fill">
 		<ParticleBackground />
 		<div class="content-wrapper">
-			<h1>Hi, I'm <span class="highlight">Rafał</span> <span class="handwave">👋</span></h1>
-			<p>I'm a 22-year-old developer from Poland with a passion for coding that began when i was 15. From simple websites and game modding, I've been expanding my skill set for years.</p>
+			<h1>
+				Hi, I'm <span class="highlight">Rafał</span>
+				<span class="handwave">👋</span>
+			</h1>
+			<p>
+				I'm a 22-year-old developer from Poland with a passion for programming
+				that began when i was 15.
+			</p>
 			<a href="#projects" class="call-to-action">See projects</a>
 		</div>
 	</section>
@@ -82,15 +88,21 @@
 	/* #region Hero */
 
 	#hero {
+		padding-top: 0;
+
 		h1 {
-			margin-bottom: 0.5em;
-			font-size: 3rem;
+			margin-bottom: 0.25em;
+			font-size: 4.5rem;
+			font-weight: bold;
+			font-family: var(--font-mono);
+			text-align: center;
 		}
 
 		p {
 			margin-bottom: 1em;
 			color: var(--subtext-0);
-			font-size: 1.2rem;
+			font-size: 1.4rem;
+			max-width: 50ch;
 		}
 
 		.highlight {
