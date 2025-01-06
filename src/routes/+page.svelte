@@ -7,6 +7,10 @@
 	const { data } = $props()
 </script>
 
+<svelte:head>
+	<title>Rafał Berezin</title>
+</svelte:head>
+
 <main id="main-content">
 	<section id="hero" class="page-section section-fill">
 		<ParticleBackground />
@@ -87,9 +91,17 @@
 			<h2>Featured projects</h2>
 
 			<div class="featured-projects">
-				{#each data.featuredProjects as project}
-					<ProjectCard {project} />
-				{/each}
+				{#if data.featuredProjects.length > 0}
+					{#each data.featuredProjects as project}
+						<ProjectCard {project} />
+					{/each}
+				{:else}
+					<div class="empty">
+						<p>Nothing there yet</p>
+						<img src="tumbleweed.svg" alt="tumbleweed" />
+						<p>But you can check out all projects</p>
+					</div>
+				{/if}
 			</div>
 
 			<a href="/projects" class="see-more">See more</a>
@@ -305,6 +317,15 @@
 			height: calc(100% + 6px);
 			background: var(--y-p-gradient);
 			z-index: -1;
+		}
+	}
+
+	.empty {
+		color: var(--subtext-0);
+		text-align: left;
+
+		img {
+			/* width: fit-content; */
 		}
 	}
 </style>
