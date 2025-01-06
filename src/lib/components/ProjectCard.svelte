@@ -1,20 +1,27 @@
 <script>
-	import { LucideScale, LucideTag } from 'lucide-svelte';
+	import { LucideScale, LucideTag } from 'lucide-svelte'
 
 	/** @type {{ project: import('$lib/types/project').ProjectData }}*/
-	const { project } = $props();
+	const { project } = $props()
 </script>
 
-<a class="project no-global" href={`/projects/${project.slug}`} style={`--accent: ${project.accent}`}>
+<a
+	class="project no-global"
+	href={`/projects/${project.slug}`}
+	style={`--accent: ${project.accent}`}>
 	<h2>{project.name} <span class="version">{project.latest_version}</span></h2>
 	<p class="summary">{project.summary}</p>
 
 	<ul class="tags">
-		<li class="tag license"><LucideScale size=16 aria-label="license" />{project.license}</li>
+		<li class="tag license">
+			<LucideScale size="16" aria-label="license" />{project.license}
+		</li>
 
 		{#if project.tags}
 			{#each Object.entries(project.tags) as [label, color]}
-				<li class="tag" style={`color: ${color}`}><LucideTag size=16 aria-hidden="true" />{label}</li>
+				<li class="tag" style={`color: ${color}`}>
+					<LucideTag size="16" aria-hidden="true" />{label}
+				</li>
 			{/each}
 		{/if}
 	</ul>

@@ -1,9 +1,9 @@
 <script>
-	import { flip } from "svelte/animate";
-	import { quadOut } from "svelte/easing";
-	import { fly, fade } from "svelte/transition";
-	import { toaster } from "$lib/stores/toast";
-	import { LucideX } from "lucide-svelte";
+	import { flip } from 'svelte/animate'
+	import { quadOut } from 'svelte/easing'
+	import { fly, fade } from 'svelte/transition'
+	import { toaster } from '$lib/stores/toast'
+	import { LucideX } from 'lucide-svelte'
 </script>
 
 <div class="toaster">
@@ -13,11 +13,14 @@
 			in:fly={{ duration: 350, y: 50, easing: quadOut }}
 			out:fade={{ duration: 350, easing: quadOut }}
 			animate:flip={{ duration: 350, easing: quadOut }}
-			role="alert"
-		>
+			role="alert">
 			<p class="type">{toast.type}</p>
 			<p class="message">{toast.message}</p>
-			<button class="close" onclick={(e) => {toaster.remove(toast.id)}}><LucideX /></button>
+			<button
+				class="close"
+				onclick={e => {
+					toaster.remove(toast.id)
+				}}><LucideX /></button>
 		</div>
 	{/each}
 </div>
@@ -42,10 +45,18 @@
 		background-color: var(--surface-0);
 		border-left: 5px solid var(--accent);
 
-		&.info    { --accent: var(--blue  ) }
-		&.success { --accent: var(--green ) }
-		&.warning { --accent: var(--yellow) }
-		&.error   { --accent: var(--red   ) }
+		&.info {
+			--accent: var(--blue);
+		}
+		&.success {
+			--accent: var(--green);
+		}
+		&.warning {
+			--accent: var(--yellow);
+		}
+		&.error {
+			--accent: var(--red);
+		}
 	}
 
 	.type {

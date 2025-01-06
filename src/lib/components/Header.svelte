@@ -1,69 +1,79 @@
 <script>
-	import { clickOutside } from "$lib/actions/clickOutside";
-	import { loopFocus } from "$lib/actions/loopFocus";
+	import { clickOutside } from '$lib/actions/clickOutside'
+	import { loopFocus } from '$lib/actions/loopFocus'
 
-	import { onNavigate } from "$app/navigation";
-	import { quadOut } from "svelte/easing";
-	import { derived } from "svelte/store";
-	import { fly, slide } from "svelte/transition";
-	import { LucideFolderGit2, LucideHome, LucideMail, LucideMenu, LucideX } from "lucide-svelte";
+	import { onNavigate } from '$app/navigation'
+	import { quadOut } from 'svelte/easing'
+	import { derived } from 'svelte/store'
+	import { fly, slide } from 'svelte/transition'
+	import {
+		LucideFolderGit2,
+		LucideHome,
+		LucideMail,
+		LucideMenu,
+		LucideX
+	} from 'lucide-svelte'
 
-	const WIDTH_BREAKPOINT = 650;
+	const WIDTH_BREAKPOINT = 650
 	const MAIN_NAV_LINKS = [
 		{
-			href: "/",
-			label: "home",
-			icon: LucideHome,
+			href: '/',
+			label: 'home',
+			icon: LucideHome
 		},
 		{
-			href: "/projects",
-			label: "projects",
-			icon: LucideFolderGit2,
+			href: '/projects',
+			label: 'projects',
+			icon: LucideFolderGit2
 		},
 		{
-			href: "/contact",
-			label: "contact",
-			icon: LucideMail,
-		},
-	];
+			href: '/contact',
+			label: 'contact',
+			icon: LucideMail
+		}
+	]
 
-	let navbarWidth = $state(1920);
-	let mobile = $derived(navbarWidth < WIDTH_BREAKPOINT);
-	let open = $state(false);
+	let navbarWidth = $state(1920)
+	let mobile = $derived(navbarWidth < WIDTH_BREAKPOINT)
+	let open = $state(false)
 
-	let scrollTop = $state(0);
-	let top = $derived(scrollTop == 0);
+	let scrollTop = $state(0)
+	let top = $derived(scrollTop == 0)
 
 	$effect(() => {
-		if (!mobile) open = false;
-	});
+		if (!mobile) open = false
+	})
 
 	onNavigate(() => {
-		open = false;
-	});
+		open = false
+	})
 
 	// svelte-ignore non_reactive_update
-	let mobileToggle;
+	let mobileToggle
 </script>
 
-<svelte:window bind:scrollY={scrollTop}/>
+<svelte:window bind:scrollY={scrollTop} />
 
 <a href="#main-content" class="skip-to-content">Skip to content</a>
 
-<header bind:clientWidth={navbarWidth} class:top class:mobile class:open use:clickOutside={(_) => open = false}>
+<header
+	bind:clientWidth={navbarWidth}
+	class:top
+	class:mobile
+	class:open
+	use:clickOutside={_ => (open = false)}>
 	<div class="container">
 		<a href="/" class="logo">
-			<img src="favicon.svg" alt="Logo">
+			<img src="favicon.svg" alt="Logo" />
 			<span class="name">rafalberezin<span class="highlight">.dev</span></span>
 		</a>
 
 		<button
 			class="mobile-toggle"
-			onclick={() => open = !open}
+			onclick={() => (open = !open)}
 			aria-label="toggle navigation"
 			aria-expanded={open}
-			bind:this={mobileToggle}
-		>
+			bind:this={mobileToggle}>
 			{#if open}
 				<LucideX />
 			{:else}
@@ -77,22 +87,20 @@
 					class="mobile"
 					transition:slide={{
 						duration: 150,
-						axis: "y",
-						easing: quadOut,
+						axis: 'y',
+						easing: quadOut
 					}}
-					use:loopFocus={{ loopTo: mobileToggle }}
-				>
+					use:loopFocus={{ loopTo: mobileToggle }}>
 					{#each MAIN_NAV_LINKS as link, i}
 						<a
 							in:fly|global={{
 								delay: i * 100 + 150,
 								duration: 100,
 								y: 25,
-								easing: quadOut,
+								easing: quadOut
 							}}
 							href={link.href}
-							data-focusable
-						>
+							data-focusable>
 							<link.icon />{link.label}
 						</a>
 					{/each}
@@ -105,7 +113,6 @@
 				{/each}
 			</nav>
 		{/if}
-
 	</div>
 </header>
 
