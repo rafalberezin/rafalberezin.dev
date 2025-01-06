@@ -1,15 +1,16 @@
 <script>
-	import { LucideCopyright, LucideHeart } from "lucide-svelte";
-
-
+	import { LucideCopyright, LucideHeart } from 'lucide-svelte'
 </script>
 
 <footer>
 	<p>
-		Built with <LucideHeart fill="var(--red)" color="var(--red)" aria-label="love" />
+		Built with <LucideHeart
+			fill="var(--red)"
+			color="var(--red)"
+			aria-label="love" />
 	</p>
 	<p>
-		Rafał Berezin <LucideCopyright size=16 aria-label="copyright"/> 2024
+		Rafał Berezin <LucideCopyright size="16" aria-label="copyright" /> 2025
 	</p>
 </footer>
 
