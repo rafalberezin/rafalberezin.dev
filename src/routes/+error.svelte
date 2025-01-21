@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { page } from '$app/stores'
+	import { page } from '$app/state'
 </script>
 
 <main id="main-content">
 	<section class="page-section section-fill">
 		<div class="content-wrapper">
-			<h1>{$page.status}</h1>
-			<p>{$page.error?.message}</p>
+			<h1>{page.status}</h1>
+			<p>{page.error?.message}</p>
 		</div>
 	</section>
 </main>
