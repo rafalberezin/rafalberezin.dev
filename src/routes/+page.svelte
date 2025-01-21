@@ -6,6 +6,9 @@
 	import type { ProjectData } from '$lib/types/project'
 
 	const { data }: { data: { featuredProjects: ProjectData[] } } = $props()
+
+	const WHAT_I_KNOW = ['html', 'css', 'js', 'git', 'java', 'svelte', 'postgresql']
+	const WHAT_IM_LEARNING = ['go', 'docker']
 </script>
 
 <svelte:head>
@@ -46,35 +49,22 @@
 		<div class="content-wrapper">
 			<h2 class="section-title">What I know</h2>
 			<ul class="icon-blocks">
-				<li class="block">
-					<img class="icon" src="tech/html.svg" alt="html icon" />
-				</li>
-				<li class="block">
-					<img class="icon" src="tech/css.svg" alt="css icon" />
-				</li>
-				<li class="block">
-					<img class="icon" src="tech/js.svg" alt="javascript icon" />
-				</li>
-				<li class="block">
-					<img class="icon" src="tech/git.svg" alt="git icon" />
-				</li>
-				<li class="block">
-					<img class="icon" src="tech/svelte.svg" alt="svelte icon" />
-				</li>
-				<li class="block">
-					<img class="icon" src="tech/java.svg" alt="java icon" />
-				</li>
+				{#each WHAT_I_KNOW as icon}
+					<li class="block">
+						<img src={`tech/${icon}.svg`} alt={`${icon} icon`} class="icon" />
+					</li>
+				{/each}
 			</ul>
 		</div>
+
 		<div class="content-wrapper">
 			<h2 class="section-title">What I'm learning</h2>
 			<ul class="icon-blocks">
-				<li class="block">
-					<img class="icon" src="tech/go.svg" alt="go icon" />
-				</li>
-				<li class="block">
-					<img class="icon" src="tech/docker.svg" alt="docker icon" />
-				</li>
+				{#each WHAT_IM_LEARNING as icon}
+					<li class="block">
+						<img src={`tech/${icon}.svg`} alt={`${icon} icon`} class="icon" />
+					</li>
+				{/each}
 			</ul>
 		</div>
 	</section>
