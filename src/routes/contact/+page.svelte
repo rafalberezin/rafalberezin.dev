@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import ParticleBackground from '$lib/components/ParticleBackground.svelte'
 	import { toaster } from '$lib/stores/toast'
 	import { LucideGithub, LucideMail } from 'lucide-svelte'

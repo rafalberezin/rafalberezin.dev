@@ -1,10 +1,11 @@
-<script>
-	import { fakeHover } from '$lib/actions/fakeHover.js'
-	import { interserct } from '$lib/actions/intersect.js'
+<script lang="ts">
+	import { fakeHover } from '$lib/actions/fakeHover'
+	import { intersect } from '$lib/actions/intersect'
 	import ParticleBackground from '$lib/components/ParticleBackground.svelte'
 	import ProjectCard from '$lib/components/ProjectCard.svelte'
+	import type { ProjectData } from '$lib/types/project'
 
-	const { data } = $props()
+	const { data }: { data: { featuredProjects: ProjectData[] } } = $props()
 </script>
 
 <svelte:head>
@@ -20,8 +21,8 @@
 				<span class="handwave">👋</span>
 			</h1>
 			<p>
-				I'm a 22-year-old developer from Poland with a passion for programming
-				that began when i was 15.
+				I'm a 22-year-old developer from Poland with a passion for programming that began when I was
+				15.
 			</p>
 			<a href="#projects" class="call-to-action">See projects</a>
 		</div>
@@ -30,7 +31,7 @@
 	<section
 		id="skills"
 		class="page-section"
-		use:interserct={{
+		use:intersect={{
 			once: true,
 			event: 'fakeHover',
 			intersectingOnly: true,
@@ -40,7 +41,7 @@
 			selector: 'li',
 			duration: 200,
 			delay: 300,
-			sequantialDelay: 100
+			sequentialDelay: 100
 		}}>
 		<div class="content-wrapper">
 			<h2 class="section-title">What I know</h2>
@@ -81,8 +82,7 @@
 	<section id="knowledge" class="page-section">
 		<h2 class="section-title">Knowledge means more when you share it</h2>
 		<p>
-			That's why I'm making my projects <nobr class="highlight"
-				>open-source</nobr> whenever possible.
+			That's why I'm making my projects <nobr class="highlight">open-source</nobr> whenever possible.
 		</p>
 	</section>
 

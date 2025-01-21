@@ -1,18 +1,12 @@
-<script>
+<script lang="ts">
 	import { clickOutside } from '$lib/actions/clickOutside'
 	import { loopFocus } from '$lib/actions/loopFocus'
 
 	import { onNavigate } from '$app/navigation'
 	import { quadOut } from 'svelte/easing'
-	import { derived } from 'svelte/store'
 	import { fly, slide } from 'svelte/transition'
-	import {
-		LucideFolderGit2,
-		LucideHome,
-		LucideMail,
-		LucideMenu,
-		LucideX
-	} from 'lucide-svelte'
+
+	import { LucideFolderGit2, LucideHome, LucideMail, LucideMenu, LucideX } from 'lucide-svelte'
 
 	const WIDTH_BREAKPOINT = 650
 	const MAIN_NAV_LINKS = [
@@ -85,20 +79,11 @@
 			{#if open}
 				<nav
 					class="mobile"
-					transition:slide={{
-						duration: 150,
-						axis: 'y',
-						easing: quadOut
-					}}
+					transition:slide={{ duration: 150, axis: 'y', easing: quadOut }}
 					use:loopFocus={{ loopTo: mobileToggle }}>
 					{#each MAIN_NAV_LINKS as link, i}
 						<a
-							in:fly|global={{
-								delay: i * 100 + 150,
-								duration: 100,
-								y: 25,
-								easing: quadOut
-							}}
+							in:fly|global={{ delay: i * 100 + 150, duration: 100, y: 25, easing: quadOut }}
 							href={link.href}
 							data-focusable>
 							<link.icon />{link.label}

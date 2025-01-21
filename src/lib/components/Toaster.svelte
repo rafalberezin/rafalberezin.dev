@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { flip } from 'svelte/animate'
 	import { quadOut } from 'svelte/easing'
 	import { fly, fade } from 'svelte/transition'

@@ -1,44 +1,35 @@
-<script>
+<script lang="ts">
 	import { debounce } from '$lib/utils'
 	import { onMount } from 'svelte'
 
-	const density = 15000
-	const maxParticles = 200
-	const minVelocity = 0.01
-	const maxVelocity = 0.03
-	const velocityRange = maxVelocity - minVelocity
-	const minSize = 3
-	const maxSize = 7
-	const sizeRange = maxSize - minSize
-	const particleColor = '#fab387'
+	const DENSITY = 15_000
+	const MAX_PARTICLES = 200
+	const MIN_VELOCITY = 0.01
+	const MAX_VELOCITY = 0.03
+	const VELOCITY_RANGE = MAX_VELOCITY - MIN_VELOCITY
+	const MIN_SIZE = 3
+	const MAX_SIZE = 7
+	const SIZE_RANGE = MAX_SIZE - MIN_SIZE
+	const PARTICLE_COLOR = '#fab387'
 
-	/** @type {HTMLCanvasElement} */
-	let canvas
+	let canvas: HTMLCanvasElement
+	let ctx: CanvasRenderingContext2D
 
-	/** @type {CanvasRenderingContext2D} */
-	let ctx
+	interface Particle {
+		x: number
+		y: number
+		vx: number
+		vy: number
+		size: number
+	}
+	let particles: Particle[]
 
-	/**
-	 * @typedef Particle
-	 * @property {number} x
-	 * @property {number} y
-	 * @property {number} vx
-	 * @property {number} vy
-	 * @property {number} size
-	 */
-
-	/** @type {Particle[]} */
-	let particles
-
-	/** @type {number} */
-	let previousTimestamp
-
-	/** @type {number} */
-	let nextFrameHandle
+	let previousTimestamp: number
+	let nextFrameHandle: number
 
 	function initCanvas() {
 		if (!resizeCanvas()) return
-		initParticles(density, canvas.width, canvas.height)
+		initParticles(DENSITY, canvas.width, canvas.height)
 	}
 
 	function resizeCanvas() {
@@ -50,48 +41,39 @@
 		return canvas.width !== previousWidth || canvas.height !== previousHeight
 	}
 
-	/**
-	 * @param {number} density
-	 * @param {number} width
-	 * @param {number} height
-	 */
-	function initParticles(density, width, height) {
-		const count = Math.min((width * height) / density, maxParticles)
+	function initParticles(density: number, width: number, height: number) {
+		const count = Math.min((width * height) / density, MAX_PARTICLES)
 		particles = Array.from({ length: count }, () => {
 			const x = Math.random() * width
 			const y = Math.random() * height
-			const vx = Math.random() * velocityRange + minVelocity
-			const vy = Math.random() * velocityRange + minVelocity
-			const size = Math.floor(Math.random() * sizeRange + minSize)
+			const vx = Math.random() * VELOCITY_RANGE + MIN_VELOCITY
+			const vy = Math.random() * VELOCITY_RANGE + MIN_VELOCITY
+			const size = Math.floor(Math.random() * SIZE_RANGE + MIN_SIZE)
 
 			return { x, y, vx, vy, size }
 		})
 	}
 
-	/** @param {number} delta */
-	function updateParticles(delta) {
+	function updateParticles(delta: number) {
 		particles.forEach(particle => {
 			particle.x += particle.vx * delta
 			particle.y += particle.vy * delta
 
 			if (particle.x - particle.size > canvas.width) particle.x = -particle.size
-			if (particle.y - particle.size > canvas.height)
-				particle.y = -particle.size
+			if (particle.y - particle.size > canvas.height) particle.y = -particle.size
 		})
 	}
 
-	/** @param {CanvasRenderingContext2D} ctx */
-	function drawParticles(ctx) {
+	function drawParticles(ctx: CanvasRenderingContext2D) {
 		particles.forEach(particle => {
 			ctx.beginPath()
-			ctx.fillStyle = particleColor
+			ctx.fillStyle = PARTICLE_COLOR
 			ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2, false)
 			ctx.fill()
 		})
 	}
 
-	/** @param {number} timestamp */
-	function animate(timestamp) {
+	function animate(timestamp: number) {
 		const delta = timestamp - previousTimestamp
 		previousTimestamp = timestamp
 
@@ -102,8 +84,7 @@
 	}
 
 	onMount(() => {
-		ctx = /** @type {CanvasRenderingContext2D} */ (canvas.getContext('2d'))
-
+		ctx = canvas.getContext('2d') as CanvasRenderingContext2D
 		previousTimestamp = performance.now()
 
 		initCanvas()

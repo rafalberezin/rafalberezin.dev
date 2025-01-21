@@ -1,8 +1,9 @@
-<script>
 	import { LucideScale, LucideTag } from 'lucide-svelte'
+<script lang="ts">
+	import type { ProjectData } from '$lib/types/project'
 
-	/** @type {{ project: import('$lib/types/project').ProjectData }}*/
-	const { project } = $props()
+	// const { project }: { project: ProjectData } = $props()
+	const { project }: { project: ProjectData } = $props()
 </script>
 
 <a

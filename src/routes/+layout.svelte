@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/components/Header.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 	import Toaster from '$lib/components/Toaster.svelte'
@@ -9,7 +9,7 @@
 	const { children } = $props()
 
 	// TODO remove when finished
-	toaster.add('Website currently in development', 'info', 10000)
+	toaster.add('Website currently in development', 'info', 10_000)
 </script>
 
 <Toaster />
