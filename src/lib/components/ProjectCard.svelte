@@ -1,17 +1,29 @@
-	import { LucideScale, LucideTag } from 'lucide-svelte'
 <script lang="ts">
+	import { LucideClock, LucideScale, LucideStar, LucideTag } from 'lucide-svelte'
 	import type { ProjectData } from '$lib/types/project'
 
-	// const { project }: { project: ProjectData } = $props()
 	const { project }: { project: ProjectData } = $props()
 </script>
 
 <a
 	class="project no-global"
 	href={`/projects/${project.slug}`}
-	style={`--accent: ${project.accent}`}>
-	<h2>{project.name} <span class="version">{project.latest_version}</span></h2>
-	<p class="summary">{project.summary}</p>
+	style={`--accent-color: ${project.color}`}>
+	<h2>
+		{#if project.featured}
+			<span class="featured">
+				<LucideStar fill="currentcolor" />
+			</span>
+		{/if}
+		{project.title}
+		{#if project.latest_version}
+			<span class="version">{project.latest_version}</span>
+		{/if}
+	</h2>
+
+	{#if project.description}
+		<p class="description">{project.description}</p>
+	{/if}
 
 	<ul class="tags">
 		<li class="tag license">
@@ -26,6 +38,15 @@
 			{/each}
 		{/if}
 	</ul>
+
+	<span class="updated-at">
+		<LucideClock size="16" aria-label="updated at" />
+		{new Date(project.updated_at).toLocaleDateString('en-US', {
+			day: 'numeric',
+			month: 'short',
+			year: 'numeric'
+		})}
+	</span>
 </a>
 
 <style>
@@ -36,7 +57,7 @@
 		padding: 1em;
 		background-color: var(--mantle);
 		text-decoration: none;
-		border: 3px solid var(--accent);
+		border: 3px solid var(--accent-color);
 		outline-offset: 5px;
 		transition: background-color var(--transition-duration) ease-out;
 
@@ -50,7 +71,7 @@
 	}
 
 	h2 {
-		color: var(--accent);
+		color: var(--accent-color);
 	}
 
 	.version {
@@ -59,6 +80,11 @@
 		color: var(--subtext-0);
 		font-size: 0.9rem;
 		transition: background-color var(--transition-duration) ease-out;
+	}
+
+	.featured {
+		display: inline-block;
+		color: var(--yellow);
 	}
 
 	p {
@@ -93,5 +119,12 @@
 		:global(svg) {
 			margin-top: 0;
 		}
+	}
+
+	.updated-at {
+		display: flex;
+		gap: 0.25em;
+		padding-top: 1em;
+		color: var(--overlay-0);
 	}
 </style>
