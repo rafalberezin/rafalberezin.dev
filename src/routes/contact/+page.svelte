@@ -16,9 +16,20 @@
 			<h1>Get in Touch</h1>
 			<button
 				class="fake-link"
-				onclick={_ => {
-					navigator.clipboard.writeText('rafalberezin')
-					toaster.add('Copied to clipboard', 'success', 3_000)
+				onclick={() => {
+					if (navigator.clipboard) {
+						navigator.clipboard.writeText('rafalberezin')
+						toaster.add('Copied to clipboard', 'success', 3_000)
+					} else {
+						toaster.add(
+							`Clipboard unavailable, please copy manually:
+							<span style="display: block; padding: 1em; font-size: 1.2rem; letter-spacing: 1px; text-align: center;">
+								rafalberezin
+							</span>`,
+							'warning',
+							10_000
+						)
+					}
 				}}>
 				<DiscordIcon size="1.5em" aria-label="discord" /> rafalberezin
 			</button>

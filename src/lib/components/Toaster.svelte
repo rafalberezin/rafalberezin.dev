@@ -15,7 +15,7 @@
 			animate:flip={{ duration: 350, easing: quadOut }}
 			role="alert">
 			<p class="type">{toast.type}</p>
-			<p class="message">{toast.message}</p>
+			<p class="message">{@html toast.message}</p>
 			<button
 				class="close"
 				onclick={e => {
