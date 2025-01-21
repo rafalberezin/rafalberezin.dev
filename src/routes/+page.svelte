@@ -40,7 +40,7 @@
 		use:fakeHover={{
 			selector: 'li',
 			duration: 200,
-			delay: 300,
+			delay: 200,
 			sequentialDelay: 100
 		}}>
 		<div class="content-wrapper">
