@@ -1,4 +1,5 @@
 <script lang="ts">
+	import DiscordIcon from '$lib/components/icons/DiscordIcon.svelte'
 	import ParticleBackground from '$lib/components/ParticleBackground.svelte'
 	import { toaster } from '$lib/stores/toast'
 	import { LucideGithub, LucideMail } from 'lucide-svelte'
@@ -15,18 +16,17 @@
 			<h1>Get in Touch</h1>
 			<button
 				class="fake-link"
-				onclick={event => {
-					event.preventDefault()
+				onclick={_ => {
 					navigator.clipboard.writeText('rafalberezin')
-					toaster.add('Copied to clipboard', 'success', 3000)
+					toaster.add('Copied to clipboard', 'success', 3_000)
 				}}>
-				<img class="icon" src="discord.svg" alt="discord" /> rafalberezin
+				<DiscordIcon size="1.5em" aria-label="discord" /> rafalberezin
 			</button>
 			<a class="external" href="mailto:contact@rafalberezin.dev">
-				<LucideMail size="1.5em" /> contact@rafalberezin.dev
+				<LucideMail size="1.5em" aria-label="email" /> contact@rafalberezin.dev
 			</a>
 			<a href="https://github.com/RafalBerezin" target="_blank">
-				<LucideGithub size="1.5em" /> RafalBerezin
+				<LucideGithub size="1.5em" aria-label="github" /> RafalBerezin
 			</a>
 		</div>
 	</section>
@@ -54,7 +54,6 @@
 		font-family: var(--font-mono);
 		transition: color var(--transition-duration) linear;
 
-		img,
 		:global(svg) {
 			margin-top: -1px;
 		}
@@ -68,9 +67,5 @@
 		background: transparent;
 		border: none;
 		cursor: pointer;
-	}
-
-	.icon {
-		height: 1.5em;
 	}
 </style>
