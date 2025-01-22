@@ -1,14 +1,13 @@
 <script lang="ts">
 	import { clickOutside } from '$lib/actions/clickOutside'
 	import { loopFocus } from '$lib/actions/loopFocus'
+	import { mobile } from '$lib/stores/mobile'
 
 	import { onNavigate } from '$app/navigation'
 	import { quadOut } from 'svelte/easing'
 	import { fly, slide } from 'svelte/transition'
-
 	import { LucideFolderGit2, LucideHome, LucideMail, LucideMenu, LucideX } from 'lucide-svelte'
 
-	const WIDTH_BREAKPOINT = 650
 	const MAIN_NAV_LINKS = [
 		{
 			href: '/',
@@ -27,15 +26,13 @@
 		}
 	]
 
-	let navbarWidth = $state(1920)
-	let mobile = $derived(navbarWidth < WIDTH_BREAKPOINT)
 	let open = $state(false)
 
 	let scrollTop = $state(0)
 	let top = $derived(scrollTop == 0)
 
 	$effect(() => {
-		if (!mobile) open = false
+		if (!$mobile) open = false
 	})
 
 	onNavigate(() => {
@@ -50,12 +47,7 @@
 
 <a href="#main-content" class="skip-to-content">Skip to content</a>
 
-<header
-	bind:clientWidth={navbarWidth}
-	class:top
-	class:mobile
-	class:open
-	use:clickOutside={_ => (open = false)}>
+<header class:top class:mobile={$mobile} class:open use:clickOutside={_ => (open = false)}>
 	<div class="container">
 		<a href="/" class="logo">
 			<img src="/favicon.svg" alt="Logo" />
@@ -75,7 +67,7 @@
 			{/if}
 		</button>
 
-		{#if mobile}
+		{#if $mobile}
 			{#if open}
 				<nav
 					class="mobile"
