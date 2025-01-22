@@ -58,7 +58,7 @@
 	use:clickOutside={_ => (open = false)}>
 	<div class="container">
 		<a href="/" class="logo">
-			<img src="favicon.svg" alt="Logo" />
+			<img src="/favicon.svg" alt="Logo" />
 			<span class="name">rafalberezin<span class="highlight">.dev</span></span>
 		</a>
 
