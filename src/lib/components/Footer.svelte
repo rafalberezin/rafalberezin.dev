@@ -4,10 +4,10 @@
 
 <footer>
 	<p>
-		Built with <LucideHeart fill="var(--red)" color="var(--red)" aria-label="love" />
+		Built with <LucideHeart fill="var(--red)" color="var(--red)" aria-label="Love" />
 	</p>
 	<p>
-		Rafał Berezin <LucideCopyright size="16" aria-label="copyright" /> 2025
+		Rafał Berezin <LucideCopyright size="16" aria-label="Copyright" /> 2025
 	</p>
 </footer>
 

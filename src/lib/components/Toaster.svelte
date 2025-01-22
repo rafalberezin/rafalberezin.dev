@@ -18,9 +18,10 @@
 			<p class="message">{@html toast.message}</p>
 			<button
 				class="close"
-				onclick={e => {
+				aria-label="Close notification"
+				onclick={() => {
 					toaster.remove(toast.id)
-				}}><LucideX /></button>
+				}}><LucideX aria-hidden="true" /></button>
 		</div>
 	{/each}
 </div>

@@ -31,13 +31,13 @@
 						)
 					}
 				}}>
-				<DiscordIcon size="1.5em" aria-label="discord" /> rafalberezin
+				<DiscordIcon size="1.5em" aria-label="Discord" /> rafalberezin
 			</button>
 			<a class="external" href="mailto:contact@rafalberezin.dev">
-				<LucideMail size="1.5em" aria-label="email" /> contact@rafalberezin.dev
+				<LucideMail size="1.5em" aria-label="Email" /> contact@rafalberezin.dev
 			</a>
 			<a href="https://github.com/RafalBerezin" target="_blank">
-				<LucideGithub size="1.5em" aria-label="github" /> RafalBerezin
+				<LucideGithub size="1.5em" aria-label="Github" /> RafalBerezin
 			</a>
 		</div>
 	</section>

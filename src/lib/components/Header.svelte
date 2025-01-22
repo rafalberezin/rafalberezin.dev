@@ -65,7 +65,7 @@
 		<button
 			class="mobile-toggle"
 			onclick={() => (open = !open)}
-			aria-label="toggle navigation"
+			aria-label="Toggle navigation"
 			aria-expanded={open}
 			bind:this={mobileToggle}>
 			{#if open}
@@ -86,7 +86,7 @@
 							in:fly|global={{ delay: i * 100 + 150, duration: 100, y: 25, easing: quadOut }}
 							href={link.href}
 							data-focusable>
-							<link.icon />{link.label}
+							<link.icon aria-hidden="true" />{link.label}
 						</a>
 					{/each}
 				</nav>
@@ -94,7 +94,7 @@
 		{:else}
 			<nav class="links">
 				{#each MAIN_NAV_LINKS as link}
-					<a href={link.href}><link.icon />{link.label}</a>
+					<a href={link.href}><link.icon aria-hidden="true" />{link.label}</a>
 				{/each}
 			</nav>
 		{/if}

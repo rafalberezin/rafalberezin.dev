@@ -27,7 +27,7 @@
 
 	<ul class="tags">
 		<li class="tag license">
-			<LucideScale size="16" aria-label="license" />{project.license}
+			<LucideScale size="16" aria-label="License" />{project.license}
 		</li>
 
 		{#if project.tags}
@@ -40,7 +40,7 @@
 	</ul>
 
 	<span class="updated-at">
-		<LucideClock size="16" aria-label="updated at" />
+		<LucideClock size="16" aria-label="Updated at" />
 		{new Date(project.updated_at).toLocaleDateString('en-US', {
 			day: 'numeric',
 			month: 'short',
