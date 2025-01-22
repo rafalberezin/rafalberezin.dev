@@ -3,9 +3,8 @@
 	import { intersect } from '$lib/actions/intersect'
 	import ParticleBackground from '$lib/components/ParticleBackground.svelte'
 	import ProjectCard from '$lib/components/ProjectCard.svelte'
-	import type { ProjectData } from '$lib/types/project'
 
-	const { data }: { data: { featuredProjects: ProjectData[] } } = $props()
+	const { data } = $props()
 
 	const WHAT_I_KNOW = ['html', 'css', 'js', 'git', 'java', 'svelte', 'postgresql']
 	const WHAT_IM_LEARNING = ['go', 'docker']
@@ -81,9 +80,13 @@
 			<h2>Featured projects</h2>
 
 			<div class="featured-projects">
-				{#each data.featuredProjects as project}
-					<ProjectCard {project} />
-				{/each}
+				{#if data.featuredProjects.length > 0}
+					{#each data.featuredProjects as project}
+						<ProjectCard {project} />
+					{/each}
+				{:else}
+					<div class="nothing-there-yet">Nothing there yet</div>
+				{/if}
 			</div>
 
 			<a href="/projects" class="see-more">See more</a>
@@ -266,6 +269,14 @@
 		> :global(.project) {
 			flex: 1 0 35ch;
 			max-width: 100%;
+		}
+
+		.nothing-there-yet {
+			width: 100%;
+			padding: 1em;
+			color: var(--overlay-0);
+			font-size: 1.5rem;
+			text-align: center;
 		}
 	}
 
