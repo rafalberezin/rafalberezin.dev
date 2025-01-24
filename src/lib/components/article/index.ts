@@ -2,6 +2,7 @@ import Break from './Break.svelte'
 import Definition from './Definition.svelte'
 import Delete from './Delete.svelte'
 import Emphasis from './Emphasis.svelte'
+import Heading from './Heading.svelte'
 import Html from './Html.svelte'
 import Image from './Image.svelte'
 import ImageReference from './ImageReference.svelte'
@@ -29,6 +30,7 @@ const components: MdastComponentMap = {
 	definition: Definition,
 	delete: Delete,
 	emphasis: Emphasis,
+	heading: Heading,
 	html: Html,
 	image: Image,
 	imageReference: ImageReference,
