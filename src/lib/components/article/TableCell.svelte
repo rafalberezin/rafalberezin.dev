@@ -7,8 +7,44 @@
 	}
 
 	const { block }: Props = $props()
+	const { align, header } = block?.data ?? {}
 </script>
 
-<td>
-	<BlockChildren {block} />
-</td>
+{#if header}
+	<th class={align !== null ? `align-${align}` : undefined}>
+		<BlockChildren {block} />
+	</th>
+{:else}
+	<td class={align !== null ? `align-${align}` : undefined}>
+		<BlockChildren {block} />
+	</td>
+{/if}
+
+<style>
+	th,
+	td {
+		padding: 0.5em 1em;
+		border: 1px solid var(--surface-0);
+	}
+
+	th {
+		background-color: var(--surface-0);
+		color: var(--accent-color);
+		text-align: center;
+		border-color: var(--overlay-0);
+	}
+
+	td {
+		&.align-left {
+			text-align: left;
+		}
+
+		&.align-center {
+			text-align: center;
+		}
+
+		&.align-right {
+			text-align: right;
+		}
+	}
+</style>

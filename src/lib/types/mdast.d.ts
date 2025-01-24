@@ -10,4 +10,9 @@ declare module 'mdast' {
 	interface HeadingData {
 		id?: string
 	}
+
+	interface TableCellData {
+		align?: AlignType
+		header?: boolean
+	}
 }

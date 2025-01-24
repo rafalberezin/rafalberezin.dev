@@ -49,6 +49,32 @@ const mdastExtractFootnotes: Plugin<void[], Root> = () => {
 	}
 }
 
+const mdastPreprocessTables: Plugin<void[], Root> = () => {
+	return tree => {
+		visit(tree, 'table', table => {
+			const { align, children } = table
+			if (children.length === 0) return
+
+			const head = children[0]
+			for (const [i, col] of head.children.entries()) {
+				const data = col.data ?? (col.data = {})
+				data.header = true
+				data.align = align?.[i] ?? null
+			}
+
+			if (!align) return
+
+			const body = children.slice(1)
+			for (const row of body) {
+				for (const [i, col] of row.children.entries()) {
+					const data = col.data ?? (col.data = {})
+					data.align = align[i] ?? null
+				}
+			}
+		})
+	}
+}
+
 const mdsastMapComponents: Plugin<void[], Root> = () => {
 	return tree => {
 		visit(tree, node => {
@@ -63,6 +89,7 @@ const processor = unified()
 	.use(remarkGfm)
 	.use(mdastHeadingSlugs)
 	.use(mdastExtractFootnotes)
+	.use(mdastPreprocessTables)
 	.use(mdsastMapComponents)
 	.freeze()
 

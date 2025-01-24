@@ -12,3 +12,9 @@
 <tr>
 	<BlockChildren {block} />
 </tr>
+
+<style>
+	tr:nth-child(even) {
+		background-color: var(--base);
+	}
+</style>
