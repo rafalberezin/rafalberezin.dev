@@ -61,9 +61,9 @@
 			aria-expanded={open}
 			bind:this={mobileToggle}>
 			{#if open}
-				<LucideX />
+				<LucideX aria-hidden="true" />
 			{:else}
-				<LucideMenu />
+				<LucideMenu aria-hidden="true" />
 			{/if}
 		</button>
 
