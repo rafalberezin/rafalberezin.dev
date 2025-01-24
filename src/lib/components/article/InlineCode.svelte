@@ -14,6 +14,7 @@
 	code {
 		background-color: var(--base);
 		padding: 0.25em 0.5em;
+		font-family: var(--font-mono);
 		border: 1px solid var(--surface-0);
 	}
 </style>
