@@ -12,6 +12,7 @@ import InlineCode from './InlineCode.svelte'
 import Link from './Link.svelte'
 import LinkReference from './LinkReference.svelte'
 import List from './List.svelte'
+import ListItem from './ListItem.svelte'
 import Paragraph from './Paragraph.svelte'
 import Strong from './Strong.svelte'
 import Table from './Table.svelte'
@@ -42,6 +43,7 @@ const components: MdastComponentMap = {
 	link: Link,
 	linkReference: LinkReference,
 	list: List,
+	listItem: ListItem,
 	paragraph: Paragraph,
 	strong: Strong,
 	table: Table,
