@@ -6,7 +6,7 @@
 
 	const { data } = $props()
 
-	const WHAT_I_KNOW = ['html', 'css', 'js', 'git', 'java', 'svelte', 'postgresql']
+	const WHAT_I_KNOW = ['html', 'css', 'ts', 'git', 'java', 'svelte', 'postgresql']
 	const WHAT_IM_LEARNING = ['go', 'docker']
 </script>
 
