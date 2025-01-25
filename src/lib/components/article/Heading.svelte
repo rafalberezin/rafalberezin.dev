@@ -66,11 +66,12 @@
 
 	.permalink {
 		position: absolute;
-		top: 0.2em;
+		top: 0.5lh;
 		left: -1.5rem;
 		padding: 0.2rem 0;
 		color: var(--surface-0);
 		opacity: 0;
+		transform: translateY(-50%);
 		transition:
 			opacity var(--transition-duration) linear,
 			color var(--transition-duration) linear;
