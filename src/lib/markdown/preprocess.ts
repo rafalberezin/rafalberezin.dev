@@ -35,10 +35,15 @@ const mdastExtractFootnotes: Plugin<void[], Root> = () => {
 	return tree => {
 		const footnotes: FootnoteDefinition[] = []
 
-		visit(tree, 'footnoteDefinition', (node, index, parent) => {
-			footnotes.push(node)
-			if (parent && index !== undefined) parent.children.splice(index, 1)
-		})
+		visit(
+			tree,
+			'footnoteDefinition',
+			(node, index, parent) => {
+				footnotes.push(node)
+				if (parent && index !== undefined) parent.children.splice(index, 1)
+			},
+			true
+		)
 
 		if (footnotes.length > 0) {
 			tree.children.push(
@@ -48,7 +53,7 @@ const mdastExtractFootnotes: Plugin<void[], Root> = () => {
 					data: { id: 'footnotes' },
 					children: [{ type: 'text', value: 'Footnotes' }]
 				},
-				...footnotes
+				...footnotes.reverse()
 			)
 		}
 	}
