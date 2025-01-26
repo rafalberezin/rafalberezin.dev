@@ -10,9 +10,17 @@ import { parseParams } from './params/parser'
 import { codeParamsProcessors } from './params/code'
 import { imageParamsProcessors } from './params/image'
 import { supabase } from '$lib/db/client'
+import {
+	LucideInfo,
+	LucideLightbulb,
+	LucideOctagonAlert,
+	LucideTriangleAlert,
+	MessageSquareWarning
+} from 'lucide-svelte'
 
 import type { Plugin } from 'unified'
 import type { FootnoteDefinition, Root } from 'mdast'
+import type { Component } from 'svelte'
 
 const mdastHeadingIds: Plugin<void[], Root> = () => {
 	const slugger = new BananaSlug()
@@ -57,6 +65,37 @@ const mdastExtractFootnotes: Plugin<void[], Root> = () => {
 			)
 		}
 	}
+}
+
+const ALERT_TYPES = {
+	NOTE: LucideInfo,
+	TIP: LucideLightbulb,
+	IMPORTANT: MessageSquareWarning,
+	WARNING: LucideTriangleAlert,
+	CAUTION: LucideOctagonAlert
+} as const
+export type AlertType = { type: string; icon: Component }
+const mdastDefineAlerts: Plugin<void[], Root> = () => {
+	return tree =>
+		visit(tree, 'blockquote', node => {
+			if (node.children.length < 2) return
+
+			const firstChild = node.children[0]
+			if (firstChild.type !== 'paragraph' || firstChild.children.length !== 1) return
+
+			const innerChild = firstChild.children[0]
+			if (innerChild.type !== 'text') return
+
+			const text = innerChild.value.trim()
+			if (!text.startsWith('[!') || !text.endsWith(']')) return
+
+			const type = text.substring(2, text.length - 1)
+			const icon = ALERT_TYPES[type as keyof typeof ALERT_TYPES] as unknown as Component
+			if (!icon) return
+
+			node.children.shift()
+			;(node.data ??= {}).alert = { type, icon }
+		})
 }
 
 const mdastPreprocessCode: Plugin<void[], Root> = () => {
@@ -122,6 +161,7 @@ const processor = unified()
 	.use(remarkGfm)
 	.use(mdastHeadingIds)
 	.use(mdastExtractFootnotes)
+	.use(mdastDefineAlerts)
 	.use(mdastPreprocessCode)
 	.use(mdastPreprocessImages)
 	.use(mdastPreprocessTables)

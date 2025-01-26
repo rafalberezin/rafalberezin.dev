@@ -1,3 +1,4 @@
+import Blockquote from './Blockquote.svelte'
 import Break from './Break.svelte'
 import Code from './Code.svelte'
 import Definition from './Definition.svelte'
@@ -30,6 +31,7 @@ type MdastComponentMap = {
 }
 
 const components: MdastComponentMap = {
+	blockquote: Blockquote,
 	break: Break,
 	code: Code,
 	definition: Definition,

@@ -38,7 +38,7 @@
 		position: relative;
 		margin-bottom: 0.5em;
 
-		&:not(:global(h1)) {
+		&:where(:not(:global(h1))) {
 			margin: 1rem 0;
 			margin-left: -0.5rem;
 			padding-left: 0.5rem;

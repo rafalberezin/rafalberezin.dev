@@ -2,10 +2,15 @@ import 'mdast'
 import type { Component } from 'svelte'
 import type { CodeParams } from '$lib/markdown/params/code'
 import type { ImageParams } from '$lib/markdown/params/image'
+import type { AlertType } from '$lib/markdown/preprocess'
 
 declare module 'mdast' {
 	interface Node {
 		component?: Component<{ block: this }>
+	}
+
+	interface BlockquoteData {
+		alert?: AlertType
 	}
 
 	interface CodeData {
