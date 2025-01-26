@@ -5,6 +5,8 @@ import { toString } from 'mdast-util-to-string'
 import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
 import BananaSlug from 'github-slugger'
+import { parseParams } from './params/parser'
+import { codeParamsProcessors } from './params/code'
 
 import type { Plugin } from 'unified'
 import type { FootnoteDefinition, Root } from 'mdast'
@@ -49,6 +51,15 @@ const mdastExtractFootnotes: Plugin<void[], Root> = () => {
 	}
 }
 
+const mdastPreprocessCode: Plugin<void[], Root> = () => {
+	return tree =>
+		visit(tree, 'code', node => {
+			if (!node.meta) return
+
+			const params = parseParams(node.meta, codeParamsProcessors)
+			;(node.data ??= {}).params = params
+		})
+}
 const mdastPreprocessTables: Plugin<void[], Root> = () => {
 	return tree => {
 		visit(tree, 'table', table => {
@@ -89,6 +100,7 @@ const processor = unified()
 	.use(remarkGfm)
 	.use(mdastHeadingSlugs)
 	.use(mdastExtractFootnotes)
+	.use(mdastPreprocessCode)
 	.use(mdastPreprocessTables)
 	.use(mdsastMapComponents)
 	.freeze()

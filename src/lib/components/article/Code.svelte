@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { parseCodeMeta } from '$lib/markdown/params'
 	import { toaster } from '$lib/stores/toast'
 	import { LucideCopy } from 'lucide-svelte'
 	import type { Code } from 'mdast'
@@ -9,9 +8,8 @@
 	}
 
 	const { block }: Props = $props()
-	const { value: content, lang, meta } = block
-
-	const params = parseCodeMeta(meta)
+	const { value: content, lang, data } = block
+	const params = data?.params ?? {}
 
 	function copyCode(event: MouseEvent) {
 		if (!event.currentTarget || !navigator.clipboard) return
