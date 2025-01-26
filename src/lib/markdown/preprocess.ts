@@ -14,14 +14,14 @@ import { supabase } from '$lib/db/client'
 import type { Plugin } from 'unified'
 import type { FootnoteDefinition, Root } from 'mdast'
 
-const mdastHeadingSlugs: Plugin<void[], Root> = () => {
+const mdastHeadingIds: Plugin<void[], Root> = () => {
 	const slugger = new BananaSlug()
 
 	return tree => {
 		slugger.reset()
 
 		visit(tree, 'heading', node => {
-			const data = node.data ?? (node.data = {})
+			const data = (node.data ??= {})
 
 			const text = toString(node)
 			const id = slugger.slug(text)
@@ -80,15 +80,14 @@ const mdastPreprocessImages: Plugin<void[], Root> = () => {
 }
 const mdastPreprocessTables: Plugin<void[], Root> = () => {
 	return tree => {
-		visit(tree, 'table', table => {
-			const { align, children } = table
+		visit(tree, 'table', node => {
+			const { align, children } = node
 			if (children.length === 0) return
 
 			const head = children[0]
-			for (const [i, col] of head.children.entries()) {
-				const data = col.data ?? (col.data = {})
+			for (const col of head.children) {
+				const data = (col.data ??= {})
 				data.header = true
-				data.align = align?.[i] ?? null
 			}
 
 			if (!align) return
@@ -96,7 +95,7 @@ const mdastPreprocessTables: Plugin<void[], Root> = () => {
 			const body = children.slice(1)
 			for (const row of body) {
 				for (const [i, col] of row.children.entries()) {
-					const data = col.data ?? (col.data = {})
+					const data = (col.data ??= {})
 					data.align = align[i] ?? null
 				}
 			}
@@ -116,7 +115,7 @@ const mdsastMapComponents: Plugin<void[], Root> = () => {
 const processor = unified()
 	.use(remarkParse)
 	.use(remarkGfm)
-	.use(mdastHeadingSlugs)
+	.use(mdastHeadingIds)
 	.use(mdastExtractFootnotes)
 	.use(mdastPreprocessCode)
 	.use(mdastPreprocessImages)
