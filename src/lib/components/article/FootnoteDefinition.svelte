@@ -24,16 +24,21 @@
 		flex-wrap: nowrap;
 
 		a {
-			font-weight: normal;
-			color: var(--accent-color);
+			height: min-content;
 			padding: 0.2em;
+			color: var(--accent-color);
+			font-weight: normal;
 		}
 
 		.content {
 			padding: 0.2em;
 
-			:global(p):last-child {
-				padding-bottom: 0;
+			:global(p) {
+				margin-bottom: 0.5em;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
 			}
 		}
 	}
