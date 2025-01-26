@@ -71,7 +71,7 @@
 	<section id="knowledge" class="page-section">
 		<h2 class="section-title">Knowledge means more when you share it</h2>
 		<p>
-			That's why I'm making my projects <nobr class="highlight">open-source</nobr> whenever possible.
+			That's why I'm making my projects <span class="nobr highlight">open-source</span> whenever possible.
 		</p>
 	</section>
 
@@ -239,11 +239,12 @@
 			text-align: center;
 		}
 
-		nobr.highlight {
+		.nobr.highlight {
 			padding: 0.25em 0.5em;
 			background-color: var(--base);
 			color: var(--mauve);
 			border-radius: 5px;
+			white-space: no-wrap;
 		}
 	}
 
