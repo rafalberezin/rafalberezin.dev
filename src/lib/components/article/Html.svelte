@@ -5,9 +5,5 @@
 		block: Html
 	}
 
-	const { block }: Props = $props()
+	const {}: Props = $props()
 </script>
-
-<noscript>
-	{@html block.value}
-</noscript>
