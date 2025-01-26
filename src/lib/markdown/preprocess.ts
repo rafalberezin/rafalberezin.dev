@@ -1,3 +1,4 @@
+import { page } from '$app/state'
 import components from '$lib/components/article'
 import { unified } from 'unified'
 import { visit } from 'unist-util-visit'
@@ -7,6 +8,7 @@ import remarkGfm from 'remark-gfm'
 import BananaSlug from 'github-slugger'
 import { parseParams } from './params/parser'
 import { codeParamsProcessors } from './params/code'
+import { supabase } from '$lib/db/client'
 
 import type { Plugin } from 'unified'
 import type { FootnoteDefinition, Root } from 'mdast'
@@ -60,6 +62,17 @@ const mdastPreprocessCode: Plugin<void[], Root> = () => {
 			;(node.data ??= {}).params = params
 		})
 }
+
+const mdastPreprocessImages: Plugin<void[], Root> = () => {
+	return tree =>
+		visit(tree, 'image', node => {
+			node.url = supabase.storage
+				.from('projects')
+				.getPublicUrl(
+					`${page.data.project.slug}/${url.replace(/^(\.{1,2}\/)+/, '')}`
+				).data.publicUrl
+		})
+}
 const mdastPreprocessTables: Plugin<void[], Root> = () => {
 	return tree => {
 		visit(tree, 'table', table => {
@@ -101,6 +114,7 @@ const processor = unified()
 	.use(mdastHeadingSlugs)
 	.use(mdastExtractFootnotes)
 	.use(mdastPreprocessCode)
+	.use(mdastPreprocessImages)
 	.use(mdastPreprocessTables)
 	.use(mdsastMapComponents)
 	.freeze()
