@@ -1,4 +1,5 @@
 import Break from './Break.svelte'
+import Code from './Code.svelte'
 import Definition from './Definition.svelte'
 import Delete from './Delete.svelte'
 import Emphasis from './Emphasis.svelte'
@@ -30,6 +31,7 @@ type MdastComponentMap = {
 
 const components: MdastComponentMap = {
 	break: Break,
+	code: Code,
 	definition: Definition,
 	delete: Delete,
 	emphasis: Emphasis,
