@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm'
 import BananaSlug from 'github-slugger'
 import { parseParams } from './params/parser'
 import { codeParamsProcessors } from './params/code'
+import { imageParamsProcessors } from './params/image'
 import { supabase } from '$lib/db/client'
 
 import type { Plugin } from 'unified'
@@ -66,11 +67,15 @@ const mdastPreprocessCode: Plugin<void[], Root> = () => {
 const mdastPreprocessImages: Plugin<void[], Root> = () => {
 	return tree =>
 		visit(tree, 'image', node => {
+			const [url, meta] = node.url.split('#')
 			node.url = supabase.storage
 				.from('projects')
 				.getPublicUrl(
 					`${page.data.project.slug}/${url.replace(/^(\.{1,2}\/)+/, '')}`
 				).data.publicUrl
+
+			const params = parseParams(meta, imageParamsProcessors)
+			;(node.data ??= {}).params = params
 		})
 }
 const mdastPreprocessTables: Plugin<void[], Root> = () => {

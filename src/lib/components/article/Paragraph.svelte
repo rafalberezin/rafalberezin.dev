@@ -14,5 +14,9 @@
 <style>
 	p {
 		margin-bottom: 1em;
+
+		&:global(:has(img)) {
+			max-width: unset;
+		}
 	}
 </style>

@@ -1,6 +1,7 @@
 import 'mdast'
 import type { Component } from 'svelte'
 import type { CodeParams } from '$lib/markdown/params/code'
+import type { ImageParams } from '$lib/markdown/params/image'
 
 declare module 'mdast' {
 	interface Node {
@@ -13,6 +14,10 @@ declare module 'mdast' {
 
 	interface HeadingData {
 		id?: string
+	}
+
+	interface ImageData {
+		params?: ImageParams
 	}
 
 	interface TableCellData {
