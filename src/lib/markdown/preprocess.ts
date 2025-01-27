@@ -112,14 +112,15 @@ const mdastPreprocessImages: Plugin<void[], Root> = () => {
 	return tree =>
 		visit(tree, 'image', node => {
 			const [url, meta] = node.url.split('#')
-			node.url = supabase.storage
-				.from('projects')
-				.getPublicUrl(
-					`${page.data.project.slug}/${url.replace(/^(\.{1,2}\/)+/, '')}`
-				).data.publicUrl
-
 			const params = parseParams(meta, imageParamsProcessors)
 			;(node.data ??= {}).params = params
+
+			if (url.startsWith('.'))
+				node.url = supabase.storage
+					.from('projects')
+					.getPublicUrl(
+						`${page.data.project.slug}/${url.replace(/^(\.{1,2}\/)+/, '')}`
+					).data.publicUrl
 		})
 }
 const mdastPreprocessTables: Plugin<void[], Root> = () => {
