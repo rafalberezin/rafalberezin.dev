@@ -5,3 +5,7 @@ export function debounce(callback: () => void, delay: number): () => void {
 		timeoutId = setTimeout(callback, delay)
 	}
 }
+
+export function trimFileExtension(filePath: string): string {
+	return filePath.replace(/(?<=[^\\/])\.\w*$/, '')
+}

@@ -10,6 +10,7 @@ import { parseParams } from './params/parser'
 import { codeParamsProcessors } from './params/code'
 import { imageParamsProcessors } from './params/image'
 import { supabase } from '$lib/db/client'
+import { trimFileExtension } from '$lib/utils'
 import {
 	LucideInfo,
 	LucideLightbulb,
@@ -123,6 +124,21 @@ const mdastPreprocessImages: Plugin<void[], Root> = () => {
 					).data.publicUrl
 		})
 }
+
+const mdastPreprocessLinks: Plugin<void[], Root> = () => {
+	return tree =>
+		visit(tree, 'link', node => {
+			if (!node.url.startsWith('.')) return
+
+			node.url = trimFileExtension(node.url).replaceAll(/[\\/]\d+-/g, '/')
+
+			if (page.params.article) return
+			// If no specific article is being rendered (e.g., default project overview page /`index` article),
+			// adjust the link to be relative to `/projects/[project_slug]/[[article]]`.
+			node.url = `./${page.data.project.slug}/${node.url.substring(2)}`
+		})
+}
+
 const mdastPreprocessTables: Plugin<void[], Root> = () => {
 	return tree => {
 		visit(tree, 'table', node => {
@@ -165,6 +181,7 @@ const processor = unified()
 	.use(mdastDefineAlerts)
 	.use(mdastPreprocessCode)
 	.use(mdastPreprocessImages)
+	.use(mdastPreprocessLinks)
 	.use(mdastPreprocessTables)
 	.use(mdsastMapComponents)
 	.freeze()
