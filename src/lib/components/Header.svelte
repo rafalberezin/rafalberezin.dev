@@ -122,9 +122,9 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 4rem;
 		background-color: #1e1e2e80;
 		backdrop-filter: blur(2px);
+		height: var(--header-height);
 		border-bottom: 1px solid transparent;
 		transition: border-bottom-color var(--transition-duration) ease-out;
 		z-index: 100;
@@ -203,13 +203,13 @@
 
 	nav.mobile {
 		position: absolute;
-		top: 4rem;
+		top: var(--header-height);
 		left: 0;
 		flex-direction: column;
 		justify-content: start;
 		align-items: center;
 		width: 100%;
-		height: calc(100vh - 4rem);
+		height: calc(100vh - var(--header-height));
 		padding-top: 2em;
 		background-color: var(--mantle);
 		border-bottom: 1px solid var(--surface-0);

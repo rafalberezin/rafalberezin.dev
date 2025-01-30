@@ -39,6 +39,8 @@
 	--transition-duration: 150ms;
 	--transition-duration-long: 200ms;
 
+	--header-height: 4rem;
+
 	scroll-behavior: smooth;
 }
 
