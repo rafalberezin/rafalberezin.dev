@@ -37,6 +37,7 @@ const mdastHeadingIds: Plugin<void[], Root> = () => {
 			const id = slugger.slug(text)
 
 			data.id = id
+			data.rawText = text
 		})
 	}
 }

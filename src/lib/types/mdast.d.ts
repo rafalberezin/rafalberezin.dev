@@ -29,6 +29,7 @@ declare module 'mdast' {
 
 	interface HeadingData {
 		id?: string
+		rawText?: string
 	}
 
 	interface ImageData {
