@@ -128,7 +128,10 @@ const mdastPreprocessImages: Plugin<void[], Root> = () => {
 const mdastPreprocessLinks: Plugin<void[], Root> = () => {
 	return tree =>
 		visit(tree, 'link', node => {
-			if (!node.url.startsWith('.')) return
+			if (!node.url.startsWith('.')) {
+				;(node.data ??= {}).external = true
+				return
+			}
 
 			node.url = trimFileExtension(node.url).replaceAll(/[\\/]\d+-/g, '/')
 

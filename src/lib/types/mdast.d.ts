@@ -25,6 +25,10 @@ declare module 'mdast' {
 		params?: ImageParams
 	}
 
+	interface LinkData {
+		external?: boolean
+	}
+
 	interface TableCellData {
 		align?: AlignType
 		header?: boolean

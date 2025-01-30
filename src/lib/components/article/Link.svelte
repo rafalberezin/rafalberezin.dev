@@ -7,10 +7,10 @@
 	}
 
 	const { block }: Props = $props()
-	const { title, url: href } = block
+	const { title, url: href, data } = block
 </script>
 
-<a {href} {title} class="hover-bg">
+<a {href} {title} class="hover-bg" target={data?.external ? '_blank' : undefined}>
 	<BlockChildren {block} />
 </a>
 
