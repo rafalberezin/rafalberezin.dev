@@ -122,9 +122,9 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		background-color: #1e1e2e80;
-		backdrop-filter: blur(2px);
 		height: var(--header-height);
+		background-color: #1e1e2eb0;
+		backdrop-filter: blur(10px);
 		border-bottom: 1px solid transparent;
 		transition: border-bottom-color var(--transition-duration) ease-out;
 		z-index: 100;
