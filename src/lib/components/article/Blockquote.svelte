@@ -13,7 +13,7 @@
 <blockquote class={alert ? `alert ${alert.type.toLowerCase()}` : undefined}>
 	{#if alert}
 		<div class="alert-title">
-			<alert.icon />
+			<alert.icon aria-hidden="true" />
 			{alert.type}
 		</div>
 	{/if}

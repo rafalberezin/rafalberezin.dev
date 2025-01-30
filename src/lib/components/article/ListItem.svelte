@@ -15,9 +15,9 @@
 <li class:todo>
 	{#if todo && checked !== null}
 		{#if checked}
-			<LucideSquareCheckBig color="var(--accent-color)" />
+			<LucideSquareCheckBig color="var(--accent-color)" aria-label="Task completed" />
 		{:else}
-			<LucideSquare color="var(--overlay-0)" />
+			<LucideSquare color="var(--overlay-0)" aria-label="Task not completed" />
 		{/if}
 	{/if}
 	<BlockChildren {block} />
@@ -26,6 +26,7 @@
 <style>
 	li {
 		margin-left: 1em;
+		max-width: unset;
 
 		&.todo {
 			display: flex;
