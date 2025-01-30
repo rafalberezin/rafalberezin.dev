@@ -20,8 +20,9 @@ import {
 } from 'lucide-svelte'
 
 import type { Plugin } from 'unified'
-import type { FootnoteDefinition, Root } from 'mdast'
+import type { FootnoteDefinition, Heading, Root, RootContent } from 'mdast'
 import type { Component } from 'svelte'
+import type { Section } from '$lib/types/mdast'
 
 const mdastHeadingIds: Plugin<void[], Root> = () => {
 	const slugger = new BananaSlug()
@@ -167,6 +168,42 @@ const mdastPreprocessTables: Plugin<void[], Root> = () => {
 	}
 }
 
+// Sections are only used for Table of Contents,
+// so they are not nested for ease of use.
+const mdastSectionArticle: Plugin<void[], Root> = () => {
+	return tree => {
+		const children = tree.children
+		const newChildren: RootContent[] = []
+
+		let heading: Heading | undefined
+		let start = 0
+		let end = -1
+
+		while (end++ < children.length) {
+			const child = children[end]
+			if (child && (child.type !== 'heading' || child.depth === 1)) continue
+
+			if (start === end) {
+				heading = child
+				continue
+			}
+
+			const section: Section = {
+				type: 'section',
+				children: children.slice(start, end),
+				data: { headingId: heading?.data?.id }
+			}
+
+			start = end
+			heading = child
+
+			newChildren.push(section)
+		}
+
+		tree.children = newChildren
+	}
+}
+
 const mdsastMapComponents: Plugin<void[], Root> = () => {
 	return tree => {
 		visit(tree, node => {
@@ -186,6 +223,7 @@ const processor = unified()
 	.use(mdastPreprocessImages)
 	.use(mdastPreprocessLinks)
 	.use(mdastPreprocessTables)
+	.use(mdastSectionArticle)
 	.use(mdsastMapComponents)
 	.freeze()
 

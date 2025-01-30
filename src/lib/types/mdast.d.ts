@@ -3,6 +3,16 @@ import type { Component } from 'svelte'
 import type { CodeParams } from '$lib/markdown/params/code'
 import type { ImageParams } from '$lib/markdown/params/image'
 import type { AlertType } from '$lib/markdown/preprocess'
+import type { Parent } from 'mdast'
+
+export interface Section extends Parent {
+	type: 'section'
+	data?: SectionData
+}
+
+export interface SectionData {
+	headingId?: string
+}
 
 declare module 'mdast' {
 	interface Node {
@@ -32,5 +42,9 @@ declare module 'mdast' {
 	interface TableCellData {
 		align?: AlignType
 		header?: boolean
+	}
+
+	interface RootContentMap {
+		section: Section
 	}
 }
