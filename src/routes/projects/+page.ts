@@ -1,4 +1,5 @@
 import { supabase } from '$lib/db/client'
+import { preprocessProjectData } from '$lib/project/preprocessData'
 import type { ProjectData } from '$lib/types/project'
 
 export async function load() {
@@ -8,7 +9,8 @@ export async function load() {
 		.order('featured', { ascending: false })
 		.order('updated_at', { ascending: false })
 
-	return {
-		projects: (!error ? data : []) as ProjectData[]
-	}
+	if (error || !data) return { projects: [] as ProjectData[] }
+
+	data.forEach(project => preprocessProjectData(project, false))
+	return { projects: data as ProjectData[] }
 }
