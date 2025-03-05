@@ -1,7 +1,7 @@
 import type { TableOfContents } from '$lib/types/article'
 import type { Root } from 'mdast'
 
-export function genretateTOC(mdast: Root): TableOfContents {
+export function generateTOC(mdast: Root): TableOfContents {
 	const toc: TableOfContents = []
 
 	for (const section of mdast.children) {
