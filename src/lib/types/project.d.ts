@@ -9,7 +9,7 @@ export interface ProjectData {
 	latest_version?: string
 	versions?: string[]
 	color: string
-	tags?: { [key: string]: string }
+	tags?: Record<string, string>
 	featured: boolean
 	articles: ArticleMap
 	created_at: string

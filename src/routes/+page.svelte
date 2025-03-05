@@ -2,7 +2,7 @@
 	import { fakeHover } from '$lib/actions/fakeHover'
 	import { intersect } from '$lib/actions/intersect'
 	import ParticleBackground from '$lib/components/ParticleBackground.svelte'
-	import ProjectCard from '$lib/components/ProjectCard.svelte'
+	import ProjectCard from '$lib/components/project/ProjectCard.svelte'
 
 	const { data } = $props()
 

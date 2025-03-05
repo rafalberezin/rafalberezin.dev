@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fakeHover } from '$lib/actions/fakeHover'
-	import ProjectCard from '$lib/components/ProjectCard.svelte'
+	import ProjectCard from '$lib/components/project/ProjectCard.svelte'
 	import { onMount } from 'svelte'
 
 	const { data } = $props()

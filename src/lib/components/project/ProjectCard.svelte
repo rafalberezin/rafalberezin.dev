@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { LucideClock, LucideScale, LucideStar, LucideTag } from 'lucide-svelte'
 	import type { ProjectData } from '$lib/types/project'
+	import Tags from './Tags.svelte'
 
 	const { project }: { project: ProjectData } = $props()
 </script>
@@ -25,27 +26,17 @@
 		<p class="description">{project.description}</p>
 	{/if}
 
-	<ul class="tags">
-		<li class="tag license">
-			<LucideScale size="16" aria-label="License" />{project.license}
-		</li>
-
-		{#if project.tags}
-			{#each Object.entries(project.tags) as [label, color]}
-				<li class="tag" style={`color: ${color}`}>
-					<LucideTag size="16" aria-hidden="true" />{label}
-				</li>
-			{/each}
-		{/if}
-	</ul>
+	<Tags tags={project.tags ?? {}}>
+		{#snippet beforeChildren()}
+			<li class="tag license">
+				<LucideScale size="16" aria-label="License" />{project.license}
+			</li>
+		{/snippet}
+	</Tags>
 
 	<span class="updated-at">
 		<LucideClock size="16" aria-label="Updated at" />
-		{new Date(project.updated_at).toLocaleDateString('en-US', {
-			day: 'numeric',
-			month: 'short',
-			year: 'numeric'
-		})}
+		{project.updated_at}
 	</span>
 </a>
 
@@ -90,27 +81,6 @@
 	p {
 		padding: 1em 0;
 		color: var(--subtext-0);
-	}
-
-	.tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.25em;
-		list-style-type: none;
-		margin-top: auto;
-	}
-
-	.tag {
-		display: flex;
-		align-content: center;
-		gap: 0.25em;
-		padding: 0.25em 0.5em;
-		border: 1px solid var(--surface-0);
-		border-radius: 1em;
-
-		:global(svg) {
-			margin-top: 2px;
-		}
 	}
 
 	.license {
