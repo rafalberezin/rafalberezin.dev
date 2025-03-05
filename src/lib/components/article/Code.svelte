@@ -27,7 +27,7 @@
 				{params.title}
 			{/if}
 		</div>
-		<button class="copy" onclick={copyCode} aria-label="Copy">
+		<button class="copy" onclick={copyCode} aria-label="Copy code">
 			<LucideCopy aria-hidden="true" />
 		</button>
 	</div>
