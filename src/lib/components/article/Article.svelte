@@ -4,21 +4,24 @@
 
 	interface Props {
 		mdast: Root
-		accentColor: string
 	}
 
-	const { mdast, accentColor }: Props = $props()
+	const { mdast }: Props = $props()
 </script>
 
-<article style={`--accent-color: ${accentColor}`}>
+<article>
 	<BlockChildren block={mdast} />
 </article>
 
 <style>
 	article {
-		width: 100%;
-		padding: 1rem;
-		padding-left: 3rem;
+		padding: 3rem;
 		background-color: var(--mantle);
+		font-size: 1.2rem;
+		letter-spacing: 0.5px;
+	}
+
+	:global(html) {
+		scroll-padding: var(--header-height);
 	}
 </style>

@@ -38,20 +38,24 @@
 		position: relative;
 		margin-bottom: 0.5em;
 
-		&:where(:not(:global(h1))) {
-			margin: 1rem 0;
-			margin-left: -0.5rem;
-			padding-left: 0.5rem;
-		}
-
 		&:hover .permalink {
 			opacity: 1;
 		}
 	}
 
+	:global(section):not(:first-child) > .heading {
+		margin: 0 0 1rem -0.5rem;
+		padding-left: 0.5rem;
+		padding-top: 1em;
+	}
+
 	h1.heading {
 		font-size: 3rem;
 		color: var(--accent-color);
+	}
+
+	:global(.mobile) h1.heading {
+		font-size: 2.25rem;
 	}
 
 	h2.heading {
@@ -69,7 +73,8 @@
 		top: 0.5lh;
 		left: -1.5rem;
 		padding: 0.2rem 0;
-		color: var(--surface-0);
+		margin-top: 1em;
+		color: var(--subtext-0);
 		opacity: 0;
 		transform: translateY(-50%);
 		transition:

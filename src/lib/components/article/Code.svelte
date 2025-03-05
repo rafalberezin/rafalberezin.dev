@@ -108,6 +108,7 @@
 		max-height: var(--max-height);
 		background-color: var(--base);
 		border: 1px solid var(--surface-0);
+		border-top: none;
 		overflow: auto;
 
 		&:not(.line-numbers) {
@@ -158,7 +159,7 @@
 		}
 
 		&.meta {
-			color: var(--overlay-0);
+			color: var(--overlay-2);
 			user-select: none;
 
 			&::before {
