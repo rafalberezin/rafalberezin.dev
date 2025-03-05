@@ -65,12 +65,15 @@
 	}
 
 	function drawParticles(ctx: CanvasRenderingContext2D) {
+		ctx.beginPath()
+		ctx.fillStyle = PARTICLE_COLOR
+
 		particles.forEach(particle => {
-			ctx.beginPath()
-			ctx.fillStyle = PARTICLE_COLOR
+			ctx.moveTo(particle.x, particle.y)
 			ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2, false)
-			ctx.fill()
 		})
+
+		ctx.fill()
 	}
 
 	function animate(timestamp: number) {
