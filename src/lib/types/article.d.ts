@@ -18,3 +18,5 @@ export interface ArticleMapDirectory {
 }
 
 export type TableOfContents = { title: string; id: string; major: boolean }[]
+
+export type ArticleTitles = Record<string, string>

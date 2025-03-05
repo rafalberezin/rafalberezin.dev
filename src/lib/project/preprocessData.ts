@@ -38,3 +38,17 @@ function renameIndexArticle(project: ProjectData) {
 	firstArticle.path = `${project.slug}`
 }
 
+export function extractArticleTitles(project: ProjectData): ArticleTitles {
+	const titles: ArticleTitles = {}
+
+	function extractTitles(children: ArticleMapChildren) {
+		for (const child of children) {
+			if (child.type === 'article') titles[child.path] = child.title
+			else extractTitles(child.children)
+		}
+	}
+
+	extractTitles(project.articles.children)
+
+	return titles
+}
