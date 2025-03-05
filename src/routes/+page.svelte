@@ -244,7 +244,7 @@
 			background-color: var(--base);
 			color: var(--mauve);
 			border-radius: 5px;
-			white-space: no-wrap;
+			white-space: nowrap;
 		}
 	}
 
