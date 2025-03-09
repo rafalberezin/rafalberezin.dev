@@ -154,7 +154,6 @@
 	aside {
 		position: sticky;
 		top: var(--header-height);
-		height: 100%;
 		max-height: calc(100vh - var(--header-height));
 		overflow-y: auto;
 
