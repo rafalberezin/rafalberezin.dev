@@ -27,11 +27,11 @@
 		background-color: var(--base);
 		border-left: 1ch solid var(--accent-color);
 
-		:global(:first-child) {
+		> :global(:first-child) {
 			margin-top: 0;
 		}
 
-		:global(:last-child) {
+		> :global(:last-child) {
 			margin-bottom: 0;
 		}
 

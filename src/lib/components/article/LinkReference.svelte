@@ -5,5 +5,5 @@
 		block: LinkReference
 	}
 
-	const { block }: Props = $props()
+	const _props: Props = $props()
 </script>

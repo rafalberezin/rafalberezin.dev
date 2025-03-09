@@ -5,5 +5,5 @@
 		block: Html
 	}
 
-	const {}: Props = $props()
+	const _props: Props = $props()
 </script>

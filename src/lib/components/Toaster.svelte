@@ -15,6 +15,7 @@
 			animate:flip={{ duration: 350, easing: quadOut }}
 			role="alert">
 			<p class="type">{toast.type}</p>
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			<p class="message">{@html toast.message}</p>
 			<button
 				class="close"

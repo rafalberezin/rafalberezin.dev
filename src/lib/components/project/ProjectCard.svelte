@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LucideClock, LucideScale, LucideStar, LucideTag } from 'lucide-svelte'
+	import { LucideClock, LucideScale, LucideStar } from 'lucide-svelte'
 	import type { ProjectData } from '$lib/types/project'
 	import Tags from './Tags.svelte'
 
