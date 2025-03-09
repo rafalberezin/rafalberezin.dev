@@ -10,5 +10,5 @@ export function debounce<T extends unknown[]>(
 }
 
 export function trimFileExtension(filePath: string): string {
-	return filePath.replace(/(?<=[^\\/])\.\w*$/, '')
+	return filePath.replace(/(?<=[^\\/])\.\w*(?=(?:#.*)?$)/, '')
 }
