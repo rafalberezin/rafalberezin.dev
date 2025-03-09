@@ -42,6 +42,11 @@
 	--header-height: 4rem;
 
 	scroll-behavior: smooth;
+
+	/* Disable smooth scrolling during page navigation */
+	&.navigating {
+		scroll-behavior: auto;
+	}
 }
 
 body {

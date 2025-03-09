@@ -1,12 +1,18 @@
 <script lang="ts">
+	import { onMount } from 'svelte'
 	import BlockChildren from './BlockChildren.svelte'
 	import type { Root } from 'mdast'
+	import { page } from '$app/state'
 
 	interface Props {
 		mdast: Root
 	}
 
 	const { mdast }: Props = $props()
+
+	onMount(() => {
+		if (page.url.hash) document.getElementById(page.url.hash.substring(1))?.scrollIntoView()
+	})
 </script>
 
 <article>

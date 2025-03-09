@@ -2,14 +2,19 @@
 	import Header from '$lib/components/Header.svelte'
 	import Footer from '$lib/components/Footer.svelte'
 	import Toaster from '$lib/components/Toaster.svelte'
+	import { afterNavigate, beforeNavigate } from '$app/navigation'
 
-	import { toaster } from '$lib/stores/toast'
 	import '../css/main.css'
 
 	const { children } = $props()
 
-	// TODO remove when finished
-	toaster.add('Website currently in development', 'info', 10_000)
+	/* Disable smooth scrolling during page navigation */
+	beforeNavigate(() => {
+		document.documentElement.classList.add('navigating')
+	})
+	afterNavigate(() => {
+		document.documentElement.classList.remove('navigating')
+	})
 </script>
 
 <Toaster />
