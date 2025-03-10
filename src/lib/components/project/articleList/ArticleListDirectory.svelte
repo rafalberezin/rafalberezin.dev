@@ -33,7 +33,7 @@
 		border: 1px solid var(--surface-0);
 		border-left: none;
 		border-right: none;
-		margin-top: 0.25em;
+		margin: 0.25em 0;
 	}
 
 	.title {
