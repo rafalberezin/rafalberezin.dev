@@ -131,7 +131,7 @@ const mdastPreprocessLinks: Plugin<void[], Root> = () => {
 	return tree =>
 		visit(tree, 'link', node => {
 			if (!node.url.startsWith('.')) {
-				;(node.data ??= {}).external = true
+				if (!node.url.startsWith('#')) (node.data ??= {}).external = true
 				return
 			}
 
