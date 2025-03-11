@@ -16,5 +16,9 @@
 <style>
 	tr:nth-child(even) {
 		background-color: var(--base);
+
+		:global(code.inline) {
+			background-color: var(--mantle);
+		}
 	}
 </style>

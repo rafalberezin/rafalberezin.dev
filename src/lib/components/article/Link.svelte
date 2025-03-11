@@ -23,10 +23,8 @@
 
 		&::before {
 			z-index: -1;
-			top: -0.2em;
 			left: -0.2em;
 			width: calc(100% + 0.4em);
-			height: calc(100% + 0.4em);
 		}
 
 		&:global(:has(img)) {

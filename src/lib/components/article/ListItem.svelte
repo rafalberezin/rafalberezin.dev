@@ -32,10 +32,10 @@
 			display: flex;
 			flex-direction: row;
 			gap: 0.5em;
+		}
 
-			:global(svg) {
-				margin-top: -3px;
-			}
+		:global(:first-child) {
+			margin-top: 0;
 		}
 	}
 </style>
