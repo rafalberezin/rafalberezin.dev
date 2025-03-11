@@ -1,4 +1,5 @@
 <script lang="ts">
+	import highlight from '$lib/markdown/highlight'
 	import { toaster } from '$lib/stores/toast'
 	import { LucideCopy } from 'lucide-svelte'
 	import type { Code } from 'mdast'
@@ -9,7 +10,13 @@
 
 	const { block }: Props = $props()
 	const { value: content, lang, data } = block
+
+	const lines = highlight(content, lang ?? 'plaintext').split('\n')
+
 	const params = data?.params ?? {}
+	const style = params.lines
+		? `--start-line: ${params.lines - 1}; --lines-col-width: ${(params.lines + lines.length).toString().length + 2}ch`
+		: undefined
 
 	function copyCode(event: MouseEvent) {
 		if (!event.currentTarget || !navigator.clipboard) return
@@ -22,7 +29,9 @@
 <div class="code">
 	<div class="title-bar">
 		<div class="title">
-			<span class="lang">{lang}</span>
+			{#if lang && lang !== 'text'}
+				<span class="lang">{lang}</span>
+			{/if}
 			{#if params.title}
 				{params.title}
 			{/if}
@@ -32,22 +41,19 @@
 		</button>
 	</div>
 	<div class="content" style={`--max-height: ${params.height ?? 'unset'}`}>
-		{#if params.lines}
-			{@const lines = content.split('\n')}
-			{@const linesColWidth = (params.lines + lines.length).toString().length + 2}
-			{@const style = `--start-line: ${params.lines - 1}; --lines-col-width: ${linesColWidth}ch`}
-			<div class="code-wrapper line-numbers" {style}>
-				<code {lang}>
-					<pre class="line meta">{params.lines !== 1 ? '...' : ''}</pre>
-					{#each lines as line, i}
-						<pre class="line" class:highlight={params.highlight?.(params.lines + i)}>{line}</pre>
-					{/each}
-					<pre class="line meta">{params.continue ? '...' : ''}</pre>
-				</code>
-			</div>
-		{:else}
-			<pre class="code-wrapper"><code {lang}><br />{content}<br /><br /></code></pre>
-		{/if}
+		<div class="code-wrapper" class:line-numbers={params.lines} {style}>
+			<code {lang}>
+				<pre class="line meta">{params.lines && params.lines !== 1 ? '...' : ''}</pre>
+				{#each lines as line, i}
+					<!-- eslint-disable svelte/no-at-html-tags -->
+					<pre
+						class="line"
+						class:highlight={params.highlight?.((params.lines ?? 1) + i)}>{@html line}</pre>
+					<!-- eslint-enable svelte/no-at-html-tags -->
+				{/each}
+				<pre class="line meta">{params.continue ? '...' : ''}</pre>
+			</code>
+		</div>
 	</div>
 </div>
 
@@ -106,18 +112,16 @@
 		display: block;
 		width: 100%;
 		max-height: var(--max-height);
+		padding: 0 1ch;
 		background-color: var(--base);
 		border: 1px solid var(--surface-0);
 		border-top: none;
 		overflow: auto;
-
-		&:not(.line-numbers) {
-			padding: 0 1ch;
-		}
 	}
 
 	.line-numbers {
 		counter-reset: line var(--start-line);
+		padding: 0;
 	}
 
 	code {
@@ -126,11 +130,7 @@
 		width: 100%;
 	}
 
-	.line {
-		display: block;
-		min-height: 1lh;
-		padding-right: 1ch;
-
+	.line-numbers .line {
 		&::before {
 			content: counter(line);
 			counter-increment: line;
@@ -148,6 +148,17 @@
 			pointer-events: none;
 		}
 
+		&.meta::before {
+			content: ' ';
+			counter-increment: none;
+		}
+	}
+
+	.line {
+		display: block;
+		min-height: 1lh;
+		padding-right: 1ch;
+
 		&.highlight {
 			background-color: var(--surface-0);
 
@@ -161,11 +172,6 @@
 		&.meta {
 			color: var(--overlay-2);
 			user-select: none;
-
-			&::before {
-				content: ' ';
-				counter-increment: none;
-			}
 		}
 	}
 </style>
