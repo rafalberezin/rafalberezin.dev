@@ -3,7 +3,7 @@ import { PARAM_VALUES_SEPARATOR, type Params, type ProcessorConfig } from './par
 export const codeParamsProcessors = {
 	title: s => s,
 	lines: linesProcessor,
-	continue: _ => true,
+	continue: continueProcessor,
 	highlight: highlightProcessor,
 	height: s => s
 } satisfies ProcessorConfig
@@ -14,6 +14,26 @@ function linesProcessor(rawValue?: string): number {
 	if (!rawValue) return 1
 	const value = parseInt(rawValue)
 	return Number.isNaN(value) ? 1 : value
+}
+
+interface Continue {
+	after?: boolean
+	before?: boolean
+}
+
+function continueProcessor(rawValue?: string): Continue {
+	if (!rawValue) return { after: true }
+
+	const value: Continue = {}
+
+	rawValue
+		.split(PARAM_VALUES_SEPARATOR)
+		.map(s => s.trim())
+		.forEach(s => {
+			if (s === 'before' || s === 'after') value[s] = true
+		})
+
+	return value
 }
 
 type IsInRange = (line: number) => boolean

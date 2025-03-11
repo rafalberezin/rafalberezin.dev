@@ -43,7 +43,9 @@
 	<div class="content" style={`--max-height: ${params.height ?? 'unset'}`}>
 		<div class="code-wrapper" class:line-numbers={params.lines} {style}>
 			<code {lang}>
-				<pre class="line meta">{params.lines && params.lines !== 1 ? '...' : ''}</pre>
+				<pre class="line meta">{params.continue?.before || (params.lines && params.lines !== 1)
+						? '...'
+						: ''}</pre>
 				{#each lines as line, i}
 					<!-- eslint-disable svelte/no-at-html-tags -->
 					<pre
@@ -51,7 +53,7 @@
 						class:highlight={params.highlight?.((params.lines ?? 1) + i)}>{@html line}</pre>
 					<!-- eslint-enable svelte/no-at-html-tags -->
 				{/each}
-				<pre class="line meta">{params.continue ? '...' : ''}</pre>
+				<pre class="line meta">{params.continue?.after ? '...' : ''}</pre>
 			</code>
 		</div>
 	</div>
