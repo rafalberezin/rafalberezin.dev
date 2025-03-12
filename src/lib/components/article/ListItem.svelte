@@ -20,22 +20,29 @@
 			<LucideSquare color="var(--overlay-0)" aria-label="Task not completed" />
 		{/if}
 	{/if}
-	<BlockChildren {block} />
+	<div class="content-wrapper">
+		<BlockChildren {block} />
+	</div>
 </li>
 
 <style>
 	li {
 		margin-left: 1em;
 		max-width: unset;
+	}
 
-		&.todo {
-			display: flex;
-			flex-direction: row;
-			gap: 0.5em;
-		}
+	.todo {
+		display: grid;
+		grid-template-columns: max-content auto;
+		gap: 0.5em;
+		margin-left: 0;
 
-		:global(:first-child) {
-			margin-top: 0;
+		:global(svg) {
+			margin-top: 3px;
 		}
+	}
+
+	.content-wrapper:global(:first-child) {
+		margin-top: 0;
 	}
 </style>
