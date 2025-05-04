@@ -41,6 +41,7 @@
 	--transition-duration-long: 200ms;
 
 	--header-height: 4rem;
+	--footer-height: 125px;
 
 	scroll-behavior: smooth;
 
@@ -149,7 +150,7 @@ section.page-section {
 		min-height: 100vh;
 
 		&:last-of-type {
-			min-height: calc(100vh - 124px); /* Footer height */
+			min-height: calc(100vh - var(--footer-height));
 		}
 	}
 }
