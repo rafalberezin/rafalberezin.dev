@@ -19,9 +19,10 @@
 		gap: 1em;
 		margin-top: auto;
 		padding: 2em 1em;
-		background-color: var(--mantle);
 		color: var(--subtext-0);
-		border-top: 1px solid var(--surface-0);
+		font-family: var(--font-mono);
+		font-weight: lighter;
+		--red: #ec4646;
 	}
 
 	p {
