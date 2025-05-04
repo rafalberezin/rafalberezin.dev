@@ -67,6 +67,7 @@
 
 			&:is(:global(:hover), :global(:focus-visible), :global(.fake-hover)) {
 				border-color: var(--accent-color);
+				background-color: color-mix(in oklab, var(--accent-color) 5%, var(--base));
 			}
 		}
 	}

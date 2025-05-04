@@ -13,7 +13,7 @@
 	<h2>
 		{#if project.featured}
 			<span class="featured">
-				<LucideStar fill="currentcolor" />
+				<LucideStar fill="currentcolor" aria-label="Featured" />
 			</span>
 		{/if}
 		{project.title}
@@ -46,17 +46,17 @@
 		flex-direction: column;
 		width: 100%;
 		padding: 1em;
-		background-color: var(--mantle);
+		background-color: var(--base);
 		text-decoration: none;
 		border: 3px solid var(--accent-color);
 		outline-offset: 5px;
 		transition: background-color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
-			background-color: var(--base);
+			background-color: color-mix(in oklab, var(--accent-color) 5%, var(--base));
 
 			.version {
-				background-color: var(--surface-0);
+				background-color: var(--light-border-color);
 			}
 		}
 	}
@@ -67,7 +67,6 @@
 
 	.version {
 		padding: 0.2em 0.3em 0.1em 0.3em;
-		background-color: var(--base);
 		color: var(--subtext-0);
 		font-size: 0.9rem;
 		transition: background-color var(--transition-duration) ease-out;
