@@ -36,6 +36,8 @@
 
 	--y-p-gradient: linear-gradient(30deg, var(--yellow), var(--peach));
 
+	--light-border-color: #ffffff20;
+
 	--font: 'Fira Sans', sans-serif;
 	--font-mono: 'JetBrains Mono', monospace;
 
