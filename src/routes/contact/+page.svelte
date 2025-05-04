@@ -11,8 +11,8 @@
 
 <main id="main-content">
 	<section class="page-section section-fill">
+		<ParticleBackground />
 		<div class="content-wrapper">
-			<ParticleBackground />
 			<h1>Get in Touch</h1>
 			<button
 				class="fake-link"
@@ -47,6 +47,8 @@
 	.content-wrapper {
 		display: grid;
 		gap: 1em;
+		padding: 2rem;
+		backdrop-filter: blur(10px);
 	}
 
 	h1 {
