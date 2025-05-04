@@ -19,8 +19,7 @@
 		<ParticleBackground />
 		<div class="content-wrapper">
 			<h1>
-				Hi, I'm <span class="highlight">Rafał</span>
-				<span class="handwave">👋</span>
+				Hello, I'm <span class="highlight">Rafał</span>
 			</h1>
 			<p>
 				I'm a 22-year-old developer from Poland with a passion for programming that began when I was
@@ -103,76 +102,71 @@
 
 	#hero {
 		padding-top: 0;
+		background-color: black;
+		isolation: isolate;
 
-		h1 {
-			margin-bottom: 0.25em;
-			font-size: 4.5rem;
-			font-weight: bold;
-			font-family: var(--font-mono);
-			text-align: center;
+		> :global(.background) {
+			background-image: linear-gradient(
+				color-mix(in oklab, var(--surface-1) 80%, transparent),
+				color-mix(in oklab, var(--surface-1) 0%, transparent) 90%
+			);
 		}
 
-		p {
-			margin-bottom: 1em;
-			color: var(--subtext-0);
-			font-size: 1.4rem;
-			max-width: 50ch;
-		}
+		> .content-wrapper {
+			padding: 2rem;
+			backdrop-filter: blur(10px);
 
-		.highlight {
-			background-image: var(--y-p-gradient);
-			background-clip: text;
-			color: transparent;
-		}
-	}
+			h1 {
+				margin-bottom: 0.25em;
+				font-size: 4.5rem;
+				font-weight: bold;
+				font-family: var(--font-mono);
+				text-align: center;
+			}
 
-	.handwave {
-		display: inline-block;
-		transform-origin: bottom right;
-		animation: handwave 1000ms ease-in-out 500ms;
-	}
+			p {
+				margin-bottom: 1em;
+				color: var(--subtext-0);
+				font-size: 1.4rem;
+				max-width: 50ch;
+			}
 
-	@keyframes handwave {
-		0%,
-		100% {
-			transform: rotate(0deg);
-		}
-		20%,
-		60% {
-			transform: rotate(-10deg);
-		}
-		40%,
-		80% {
-			transform: rotate(10deg);
+			.highlight {
+				background-image: var(--y-p-gradient);
+				background-clip: text;
+				color: transparent;
+			}
 		}
 	}
 
-	.call-to-action {
+	.call-to-action,
+	.see-more {
 		position: relative;
 		display: block;
 		width: fit-content;
 		padding: 1em 2em;
-		background: var(--surface-0);
-		color: var(--subtext-0);
+		background-clip: padding-box;
+		color: var(--base);
 		font-weight: normal;
 		text-transform: uppercase;
 		letter-spacing: 1px;
+		border: 3px solid transparent;
 		transition:
-			background-color var(--transition-duration) ease-out,
+			background var(--transition-duration) ease-out,
 			color var(--transition-duration) ease-out;
 
 		&:is(:hover, :focus-visible) {
-			background: transparent;
-			color: var(--mantle);
+			color: var(--text);
+			background-color: black;
 		}
 
 		&::before {
 			content: '';
 			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
+			top: -3px;
+			left: -3px;
+			width: calc(100% + 6px);
+			height: calc(100% + 6px);
 			background-image: var(--y-p-gradient);
 			z-index: -1;
 		}
@@ -181,40 +175,45 @@
 	/* #region Skills */
 
 	#skills {
-		background-color: var(--mantle);
-
 		h2 {
 			margin: 1em;
-		}
-	}
 
-	ul.icon-blocks {
-		display: flex;
-		justify-content: center;
-		flex-wrap: wrap;
-		list-style-type: none;
-		margin-bottom: 1em;
-	}
-
-	li.block {
-		max-height: 10rem;
-		padding: 2em;
-		aspect-ratio: 1;
-
-		img {
-			scale: 1;
-			opacity: 0.3;
-			filter: grayscale(0.7);
-			transition:
-				scale var(--transition-duration-long) ease-out,
-				opacity var(--transition-duration-long) ease-out,
-				filter var(--transition-duration-long) ease-out;
+			color: var(--subtext-0);
+			font-family: var(--font-mono);
+			font-weight: normal;
+			text-align: center;
+			text-transform: uppercase;
+			letter-spacing: 1px;
 		}
 
-		&:is(:hover, :global(.fake-hover)) img {
-			scale: 1.3;
-			opacity: 1;
-			filter: grayscale(0);
+		ul.icon-blocks {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			list-style-type: none;
+			margin-bottom: 1em;
+		}
+
+		li.block {
+			max-height: 10rem;
+			padding: 2em;
+			aspect-ratio: 1;
+
+			img {
+				scale: 1;
+				opacity: 0.5;
+				filter: grayscale(0.7);
+				transition:
+					scale var(--transition-duration-long) ease-out,
+					opacity var(--transition-duration-long) ease-out,
+					filter var(--transition-duration-long) ease-out;
+			}
+
+			&:is(:hover, :global(.fake-hover)) img {
+				scale: 1.3;
+				opacity: 1;
+				filter: grayscale(0);
+			}
 		}
 	}
 
@@ -259,58 +258,30 @@
 			text-transform: uppercase;
 			letter-spacing: 1px;
 		}
-	}
 
-	.featured-projects {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1em;
-		padding: 2em 0;
+		.featured-projects {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1em;
+			padding: 2em 0;
 
-		> :global(.project) {
-			flex: 1 0 35ch;
-			max-width: 100%;
+			> :global(.project) {
+				flex: 1 0 35ch;
+				max-width: 100%;
+			}
+
+			.nothing-there-yet {
+				width: 100%;
+				padding: 1em;
+				color: var(--overlay-0);
+				font-size: 1.5rem;
+				text-align: center;
+			}
 		}
 
-		.nothing-there-yet {
-			width: 100%;
-			padding: 1em;
-			color: var(--overlay-0);
-			font-size: 1.5rem;
-			text-align: center;
-		}
-	}
-
-	.see-more {
-		position: relative;
-		display: block;
-		width: fit-content;
-		padding: 1em 2em;
-		margin-left: auto;
-		background-clip: padding-box;
-		color: var(--base);
-		font-weight: normal;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		border: 3px solid transparent;
-		transition:
-			background var(--transition-duration) ease-out,
-			color var(--transition-duration) ease-out;
-
-		&:is(:hover, :focus-visible) {
-			color: var(--text);
-			background-color: var(--mantle);
-		}
-
-		&::before {
-			content: '';
-			position: absolute;
-			top: -3px;
-			left: -3px;
-			width: calc(100% + 6px);
-			height: calc(100% + 6px);
-			background: var(--y-p-gradient);
-			z-index: -1;
+		/* style shared with .call-to-action above */
+		.see-more {
+			margin-left: auto;
 		}
 	}
 </style>
