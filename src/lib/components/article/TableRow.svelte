@@ -15,10 +15,10 @@
 
 <style>
 	tr:nth-child(even) {
-		background-color: var(--base);
+		background-color: var(--mantle);
 
 		:global(code.inline) {
-			background-color: var(--mantle);
+			background-color: var(--base);
 		}
 	}
 </style>

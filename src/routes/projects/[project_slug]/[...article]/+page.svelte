@@ -143,7 +143,6 @@
 
 	main {
 		grid-area: main-content;
-		background-color: var(--mantle);
 		height: 100%;
 	}
 
