@@ -24,11 +24,11 @@
 	th,
 	td {
 		padding: 0.5em 1em;
-		border: 1px solid var(--surface-0);
+		border: 1px solid var(--light-border-color);
 	}
 
 	th {
-		background-color: var(--surface-0);
+		background-color: var(--mantle);
 		color: var(--accent-color);
 		text-align: center;
 		border-color: var(--overlay-0);

@@ -22,7 +22,6 @@
 <style>
 	article {
 		padding: 3rem;
-		background-color: var(--mantle);
 		font-size: 1.2rem;
 		letter-spacing: 0.5px;
 	}

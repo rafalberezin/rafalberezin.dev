@@ -80,7 +80,7 @@
 	}
 
 	.title-bar {
-		background-color: var(--surface-0);
+		background-color: var(--mantle);
 		border: 1px solid var(--overlay-1);
 	}
 
@@ -115,8 +115,8 @@
 		width: 100%;
 		max-height: var(--max-height);
 		padding: 0 1ch;
-		background-color: var(--base);
-		border: 1px solid var(--surface-0);
+		background-color: var(--mantle);
+		border: 1px solid var(--light-border-color);
 		border-top: none;
 		overflow: auto;
 	}
@@ -165,7 +165,7 @@
 			background-color: var(--surface-0);
 
 			&::before {
-				background-color: var(--base);
+				background-color: var(--surface-0);
 				color: var(--accent-color);
 				border-color: var(--overlay-0);
 			}
