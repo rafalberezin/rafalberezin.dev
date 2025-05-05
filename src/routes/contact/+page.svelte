@@ -36,8 +36,8 @@
 			<a class="external" href="mailto:contact@rafalberezin.dev">
 				<LucideMail size="1.5em" aria-label="Email" /> contact@rafalberezin.dev
 			</a>
-			<a href="https://github.com/RafalBerezin" target="_blank">
-				<LucideGithub size="1.5em" aria-label="Github" /> RafalBerezin
+			<a href="https://github.com/rafalberezin" target="_blank">
+				<LucideGithub size="1.5em" aria-label="Github" /> rafalberezin
 			</a>
 		</div>
 	</section>
