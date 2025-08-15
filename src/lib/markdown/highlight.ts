@@ -1,8 +1,10 @@
 import hljs from 'highlight.js/lib/core'
 
+import bash from 'highlight.js/lib/languages/bash'
 import css from 'highlight.js/lib/languages/css'
 import diff from 'highlight.js/lib/languages/diff'
 import go from 'highlight.js/lib/languages/go'
+import xml from 'highlight.js/lib/languages/xml'
 import json from 'highlight.js/lib/languages/json'
 import markdown from 'highlight.js/lib/languages/markdown'
 import pgsql from 'highlight.js/lib/languages/pgsql'
@@ -10,6 +12,7 @@ import plaintext from 'highlight.js/lib/languages/plaintext'
 import typescript from 'highlight.js/lib/languages/typescript'
 import yaml from 'highlight.js/lib/languages/yaml'
 
+hljs.registerLanguage('bash', bash)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('diff', diff)
 hljs.registerLanguage('go', go)
@@ -21,6 +24,8 @@ hljs.registerLanguage('plaintext', plaintext)
 hljs.registerLanguage('ts', typescript)
 hljs.registerAliases(['javascript', 'js', 'jsx'], { languageName: 'ts' })
 hljs.registerLanguage('yaml', yaml)
+hljs.registerLanguage('xml', xml)
+hljs.registerAliases(['html'], { languageName: 'xml' })
 
 hljs.registerLanguage('tree', hljs => {
 	return {
