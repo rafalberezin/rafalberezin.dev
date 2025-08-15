@@ -1,31 +1,17 @@
-import { supabase } from '$lib/db/client'
 import { error } from '@sveltejs/kit'
-import { extractArticleTitles, preprocessProjectData } from '$lib/project/preprocessData'
+import { getArticleTitles } from '$lib/db/projects'
 import type { LayoutLoad } from './$types'
-import type { ProjectData } from '$lib/types/project'
+import { getProjects } from '$lib/db/projects'
 
 export const load: LayoutLoad = async ({ params }) => {
-	const { data, error: supabaseError } = await supabase
-		.from('projects')
-		.select('*')
-		.eq('slug', params.project_slug)
-		.single()
+	const projects = await getProjects()
 
-	if (supabaseError) {
-		// PGRST116: multiple or no rows returned.
-		// 'slug' is unique, so it's only no rows in this case.
-		if (supabaseError.code === 'PGRST116') {
-			error(404, `Project '${params.project_slug}' does not exist`)
-		} else {
-			error(500, 'An unexpected error occurred while fetching the project.')
-		}
+	const project = projects.find(project => project.slug === params.project_slug)
+	if (project === undefined) {
+		error(404, `Project '${params.project_slug}' does not exist`)
 	}
 
-	preprocessProjectData(data, true)
-	const articleTitles = extractArticleTitles(data)
+	const articleTitles = await getArticleTitles(project)
 
-	return {
-		project: data as ProjectData,
-		articleTitles
-	}
+	return { project, articleTitles }
 }

@@ -5,8 +5,14 @@
 	import { afterNavigate, beforeNavigate } from '$app/navigation'
 
 	import '../css/main.css'
+	import { onMount } from 'svelte'
+	import { getProjects } from '$lib/db/projects'
 
 	const { children } = $props()
+
+	onMount(() => {
+		getProjects()
+	})
 
 	/* Disable smooth scrolling during page navigation */
 	beforeNavigate(() => {
