@@ -44,7 +44,7 @@
 		position: relative;
 		width: 100%;
 		padding: 0.5em 3em 0.5em 1em;
-		background-color: var(--surface-0);
+		background-color: var(--mantle);
 		border-left: 5px solid var(--accent);
 
 		&.info {
