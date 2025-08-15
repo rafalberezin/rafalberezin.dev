@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation'
-	import { fade, slide } from 'svelte/transition'
+	import { fade, fly, slide } from 'svelte/transition'
 	import { quadOut } from 'svelte/easing'
 	import Article from '$lib/components/article/Article.svelte'
 	import ProjectInfo from '$lib/components/project/ProjectInfo.svelte'
@@ -66,12 +66,12 @@
 	class:mobile={$mobile}>
 	{#await preprocessMarkdown(data.article)}
 		<main id="main-content">
-			<p>Loading...</p>
+			<p class="loading">Loading...</p>
 		</main>
 	{:then mdast}
 		{@const toc = generateTOC(mdast)}
 
-		<main id="main-content">
+		<main id="main-content" in:fly={{ y: 20, duration: 250, easing: quadOut }}>
 			<Article {mdast} />
 		</main>
 
@@ -240,5 +240,13 @@
 			background-color: var(--base);
 			overflow-x: auto;
 		}
+	}
+
+	.loading {
+		width: 100%;
+		padding: 1em;
+		color: var(--overlay-0);
+		font-size: 1.5rem;
+		text-align: center;
 	}
 </style>
